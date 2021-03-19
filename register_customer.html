@@ -13,13 +13,13 @@
         <link rel="stylesheet" href="{% static 'CSS/register_customer.css'  %}" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
-        <script src="{% static 'JS/confirmpassword.js' %}"></script>
 
-       
+
+
     </head>
 
     <body >
-        
+
         <header>
             <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="200"></a>
                 </span>
@@ -30,48 +30,55 @@
         <center class="registration_form">
             <h2 style="font-weight:bold;font-size:24px" >CUSTOMER REGISTRATION</h2>
 
-           
-            <form action="/register_customer.html" method="post"  class="general_detailes" >
 
-                
-                {% csrf_token %}                
-                
+            <form action="/register_customer.html" method="post"  class="general_detailes" novalidate id='reg_form' >
+
+
+                {% csrf_token %}
+
                 <p style="font-weight:bold;" >Personal information</p>
-                <input  class="pd name" type="text" placeholder="First Name" required name="firstname">
-                
-                <input class="pd name"  type="text" placeholder="Middle Name" name="middlename">
-                
-                <input class="pd name"  type="text" placeholder="Last Name" required  name="lastname">
+                <input  class="pd name" type="text" placeholder="First Name" required name="firstname" id='fname' pattern="[a-zA-Z]{2,20}">
+
+                <input class="pd name"  type="text" placeholder="Middle Name" name="middlename" id='mname' pattern="[a-zA-Z]{2,20}">
+
+                <input class="pd name"  type="text" placeholder="Last Name" required  name="lastname" id="lname" pattern="[a-zA-Z]{2,20}">
+                 <span id="incorrect_names"></span>
                <br>
                <br>
                <br>
 
-                
+
                 <div class="gender_detailes">
                     <label for="gender" style="font-weight:bold;color:rgba(122, 207, 247, 0.925);">Gender:</label>
                       <input type="radio" name="gender" value="Male">  Male
                       <input type="radio" name="gender" value="Female">   Female
                      <input type="radio" name="gender" value="Others">  Others<br><br><br>
-    
+
                 </div>
-                <div class="contact_detailes">
+                  <div class="contact_detailes">
                     <label for="DOB">DOB:</label>
-                    <input class="pd " type="date" placeholder="Date of birth"   name="DOB" max="2021-0-05" required>
-    
-                    <input class="pd"  type="tel" placeholder="Mobile No 1" required pattern="[0-9]{10}" name="phone1">
-                    <input class="pd"  type="tel" placeholder="Mobile No 2(optional)" name="phone2">
-    
+                    <input class="pd " type="date" placeholder="Date of birth" name="DOB" max="2021-0-05" required>
+
+                    <input class="pd" type="tel" placeholder="Mobile No 1" required pattern="[0-9]{10}" id='mob1' name="phone1">
+                    <input class="pd" type="tel" placeholder="Mobile No 2(optional)" pattern='[0-9]{10}' id='mob2' name="phone2">
+                    <span id="incorrect_m"></span>
                 </div>
-               
-                
+
+
+
+
                 <div class="Account">
                     <br><br>
                <p style="font-weight:bold;  "> Create Account </p>
-                 
-                <input class="pd"  type="email" placeholder="Email" required name="email">
-                <input class="pd"  type="password" placeholder="Password" required minlength="8" maxlength="8" id="password" name=password>
-                <input class="pd"  type="password" placeholder="confirm password" required minlength="8" maxlength="8" id="confirm_password"><br><br>
-                
+
+
+                    <input class="pd" type="email" placeholder="Email" required id='mail-id' name="email">
+                    <span id='incorrect_e'></span>
+               <input class="pd" type="password" placeholder="Password" required
+                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="password" name="password">
+                    <input class="pd" type="password" placeholder="confirm password" id="confirm_password"
+                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}"><br>
+                    <div id="incorrect_p"> </div>
                 <div>
                     {% for message in messages %}
                     <h4 style="font-size:20px">{{message}} </h4>
@@ -80,7 +87,7 @@
                 </div>
                </div>
 
-               
+
                 <p class="address" style="font-weight:bold;" >Address </p>
 
                     <input  class="pd" type="text" placeholder="City/Village" required name="city">
@@ -90,17 +97,291 @@
 
 
 
-                    <input  class="pd pincode" type="number" placeholder="Pin code" required minlength="6" maxlength="6" name="pincode"><br><br><br><br>
-
-                    <input  type="submit" onsubmit="matchPassword()" value="Register">
+                    <input  class="pd pincode" type="text" placeholder="Pin code"  id='pin-id' required minlength="6" maxlength="6" name="pincode"><br>
+                     <span id='incorrect_pin'></span><br>
+                    <input  type="submit"  id='submit-btn' onclick="validSubmit()" value="Register">
                     <input type="reset" ><br><br>
-                
+                     <span id='submission-error'></span><br>
                     <h4>Already a user click hear for <a href="customer_login.html">Login</h4>
                 </form>
-           
+                    <script>
+                    let validity = false;//boolean used to check whether the form can be submitted
+
+                    //password validation and confirm
+                    function f1() {
+                        const p1 = document.querySelector('#password');
+                        const p2 = document.querySelector('#confirm_password');
+                        const password_error = document.querySelector('#incorrect_p');
+                        if (p1.value === p2.value&& p1.value!==''&& p2.value!=='' ) {
+                            p1.style.borderColor = 'green';
+                            p2.style.borderColor = 'green';
+                            p1.style.backgroundColor = '';
+                            p2.style.backgroundColor = '';
+                            // alert("done");
+                            // password_error.style.color='black';
+                            password_error.textContent = ""
+
+                            console.log(p1.validity.patternMismatch);
+                            // now check the validity of them
+                            if (p1.validity.patternMismatch) {
+                                p1.style.borderColor = 'red';
+                                p2.style.borderColor = 'red';
+                                p1.style.backgroundColor = '#ffb3b9';
+                                p2.style.backgroundColor = '#ffb3b9';
+                                password_error.style.color='red';
+                                password_error.textContent = "Invalid password choose another!";
+                                validity = false;
+                            }
+                            else
+                                validity = true;
+
+                        }
+                        else if(p1.value===''||p2.value==='')
+                        {
+                            p1.style.borderColor = '';
+                            p2.style.borderColor = '';
+                            p1.style.backgroundColor = '';
+                            p2.style.backgroundColor = '';
+                            password_error.textContent=''
+                            validity=false;
+                        }
+                        else {
+                            p1.style.borderColor = 'red';
+                            p2.style.borderColor = 'red';
+                            p1.style.backgroundColor = '#ffb3b9';
+                            p2.style.backgroundColor = '#ffb3b9';
+
+                            password_error.style.color = 'red';
+                            password_error.textContent = "The passwords entered don't match"
+                            console.log(p1.value);
+                            console.log(p2.value);
+                            validity = false;
+                        }
+                    }
+
+                    document.querySelector('#confirm_password').addEventListener('keyup', f1);
+                    document.querySelector('#password').addEventListener('keyup', f1);
+
+                    // email validation
+                    const emailInput = document.querySelector('#mail-id');
+                    emailInput.addEventListener('keyup', (e) => {
+                        const email_error = document.querySelector('#incorrect_e');
+                        if (emailInput.validity.typeMismatch) {
+                            email_error.style.color = 'red';
+                            emailInput.style.borderColor = 'red';
+                            emailInput.style.backgroundColor = '#ffb3b9'
+                            email_error.textContent = 'Enter a valid email!';
+                            validity = false;
+                        }
+                        else if(emailInput.value==='')
+                        {
+                            emailInput.style.borderColor='';
+                            emailInput.style.backgroundColor=''
+                            email_error.textContent='';
+                        }
+                        else {
+                            email_error.textContent = '';
+                            emailInput.style.borderColor = 'green';
+                            emailInput.style.backgroundColor = ''
+                            validity = true;
+                        }
+                    })
+
+                    //mobile validation
+                    let mob = document.querySelector("#mob1");
+                    let mobError = document.querySelector("#incorrect_m");
+                    mob.addEventListener('keyup', (e) => {
+
+                        if (mob.validity.patternMismatch) {
+                            mobError.style.color = 'red';
+                            mobError.style.marginLeft='35px';
+                            mob.style.backgroundColor = '#ffb3b9';
+                            mob.style.borderColor = 'red';
+                            mobError.textContent = 'Invalid number!';
+                            validity = false;
+                        }
+                        else if(mob.value==='')
+                        {
+                            mob.style.borderColor='';
+                            mobError.textContent = '';
+                            mob.style.backgroundColor='';
+                            validity=false;
+                        }
+                        else {
+                            mob.style.backgroundColor = '';
+                            mobError.textContent = '';
+                            mob.style.borderColor = 'green';
+                            validity=true;
+                        }
+
+                    })
+
+                    let mob1 = document.querySelector("#mob2");
+                    mob1.addEventListener('keyup', (e) => {
+
+                        if (mob1.validity.patternMismatch) {
+                            mobError.style.color = 'red';
+                            mobError.style.float='right';
+                            mobError.style.marginRight='125px';
+                            mob1.style.backgroundColor = '#ffb3b9';
+                            mob1.style.borderColor = 'red';
+                            mobError.textContent = 'Invalid number!';
+
+                        }
+                        else if(mob1.value==='')
+                        {
+                            mob1.style.borderColor='';
+                            mobError.textContent = '';
+                            mob1.style.backgroundColor='';
+                            mobError.style.float='';
+                            mobError.style.marginRight='';
+                        }
+                        else {
+                            mob1.style.backgroundColor = '';
+                            mobError.textContent = '';
+                            mob1.style.borderColor = 'green';
+                        }
+
+                    })
+
+                    //pin validate
+
+                    const pinInput=document.querySelector('#pin-id');
+                    const pinError=document.querySelector('#incorrect_pin');
+
+                    pinInput.addEventListener('keyup',(e)=>{
+                        pattern=/\d{6}/;
+                        let res=pattern.test(pinInput.value);
+
+                        console.log(pinInput.value);
+                        if(!res)
+                        {
+                            pinInput.style.borderColor='red';
+                            pinInput.style.backgroundColor='#ffb3b9';
+                            pinError.style.color='red';
+                            pinError.textContent='Invalid pin!';
+                            validity=false;
+                        }
+                        else if(pinInput.value===''){
+                            console.log('yay');
+                            pinInput.style.borderColor='';
+                            pinInput.style.backgroundColor='';
+                            validity=false;
+                        }
+                        else{
+                            pinInput.style.borderColor='green';
+                            pinInput.style.backgroundColor='';
+                            pinError.textContent='';
+                            validity=true;
+                        }
+                    })
 
 
-          
+                    //name validation
+                    let name1=document.querySelector('#fname');
+                    let name2=document.querySelector('#mname');
+                    let name3=document.querySelector('#lname');
+                    let name_error=document.querySelector('#incorrect_names');
+                    name1.addEventListener('keyup',(e)=>{
+                        if(name1.validity.patternMismatch)
+                        {
+                            name1.style.borderColor='red';
+                            name1.style.backgroundColor='#ffb3b9';
+                            validity=false;
+                            name_error.style.color='red';
+                            name_error.textContent='Invalid name!';
+                        }
+                        else if(name1.value==='')
+                        {
+                            name1.style.borderColor='';
+                            name1.style.backgroundColor='';
+                            validity=false;
+                            name_error.textContent='';
+                        }
+                        else
+                        {
+                            name1.style.borderColor='green';
+                            name1.style.backgroundColor='';
+                            name_error.textContent='';
+                            validity=true;
+                        }
+                    })
+                    name3.addEventListener('keyup',(e)=>{
+                        if(name3.validity.patternMismatch)
+                        {
+                            name3.style.borderColor='red';
+                            name3.style.backgroundColor='#ffb3b9';
+                            validity=false;
+                            name_error.style.color='red';
+                            name_error.textContent='Invalid name!';
+                        }
+                        else if(name3.value==='')
+                        {
+                            name3.style.borderColor='';
+                            name3.style.backgroundColor='';
+                            validity=false;
+                            name_error.textContent='';
+
+                        }
+                        else
+                        {
+                            name3.style.borderColor='green';
+                            name3.style.backgroundColor='';
+                            name_error.textContent='';
+                            validity=true;
+                        }
+                    })
+
+                    name2.addEventListener('keyup',(e)=>{
+                        if(name2.validity.patternMismatch)
+                        {
+                            name2.style.borderColor='red';
+                            name2.style.backgroundColor='#ffb3b9';
+
+                        }
+                        else if(name2.value==='')
+                        {
+                            name2.style.borderColor='';
+                            name2.style.backgroundColor='';
+
+
+                        }
+                        else
+                        {
+                            name2.style.borderColor='green';
+                            name2.style.backgroundColor='';
+                            name_error.textContent='';
+                        }
+                    })
+
+                    //form submition check
+                    function validSubmit()
+                    {
+                        let pass=document.querySelector('#password');
+                        if(validity){
+                            //now check that all required inputs are filled
+                            if(name1.value!=='' && name3.value!=='' && mob.value!=='' && emailInput.value!==''&& pass.value!=='' && pinInput.value!=='')
+                            {
+                                console.log('yes');
+                                document.querySelector('#reg_form').submit();
+                            }
+                            else
+                            {
+                                //disable the submit button
+                                let subError=document.querySelector('#submission-error');
+                                subError.style.color='red';
+                                subError.textContent='Please fill all the required fields!';
+                                console.log('no');
+                                console.log(`name1.value!=='${name1.value}' && name3.value!=='${name3.value}' && mob1.value!=='${mob.value}' && emailInput.value!=='${emailInput.value}'&& p1.value!=='${pass.value}' && pinInput.value!=='${pinInput.value}'`)
+                            }
+
+                        }
+                    }
+
+                </script>
+
+
+
         </center>
 
 
@@ -109,24 +390,24 @@
                 <li><a href="homepage.html"> Home </a></li><br>
                 <li><a href="services.html"> Services </a></li><br>
                 <li><a href="contact.html">Contact Us</a></li><br>
-               
+
                 <li><a href="commonloginpage.html"> Log In</a></li><br>
             </ul>
             <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150"></a>
 
-                
+
             </div>
           <div class="social_media">
-                <a href="#"> 
-                
+                <a href="#">
+
                 <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
                 </a><br>
-    
+
                 <a href="#">
-                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50"> 
+                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50">
                 </a><br>
                 <a href="#">
-                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50"> 
+                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50">
                 </a>
             </div>
             <br><br><br><br><br>
@@ -134,7 +415,7 @@
                      <p>Copyrigths@2020localpharma</p>
         </div>
         </footer>
-    
+      <script src="{% static 'JS/confirmpassword.js' %}"></script>
     </body>
 
 
