@@ -128,4 +128,16 @@ def register_customer(request):
         return render(request,'register_customer.html')
 
 
-  
+def contact(request):
+    if request.method =="POST":
+        name=request.POST['name']
+        phone=request.POST['phone']
+        email=request.POST['email']
+        query=request.POST['query']
+        obj=contactus(name=name,phone=phone,email=email,query=query)
+        obj.save()
+        print("data have been written to DB successfully")
+        return redirect('/contact.html')
+
+    else:
+        return render(request,'contact.html')

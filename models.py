@@ -54,3 +54,22 @@ class customer(models.Model):
     state=models.CharField(max_length=50)
     country=models.CharField(max_length=50)
     pincode=models.CharField(max_length=6)
+
+
+class medicine(models.Model):
+    manufacturer_name = models.CharField(max_length=255, blank=True, null=True)
+    type = models.CharField(max_length=20, blank=True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
+    short_composition = models.CharField(max_length=255, blank=True, null=True)
+    image_url = models.CharField(max_length=255, blank=True, null=True)
+    pack_size_label = models.CharField(max_length=100, blank=True, null=True)
+    isprescriptionrequired = models.CharField(db_column='isPrescriptionRequired', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    url_to_scrape = models.CharField(max_length=255, blank=True, null=True)
+
+
+class contactus(models.Model):
+    name = models.CharField(max_length=255)
+    phone=models.CharField(max_length=10)
+    email=models.EmailField(max_length=255)
+    query=models.CharField(max_length=255)
