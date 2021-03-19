@@ -25,6 +25,37 @@ def commonloginpage(request):
 def services(request):
     return render(request,'services.html')
 
+def customer_login(request):
+
+    if request.method=="POST":
+        email = request.POST['email']
+        password=request.POST['password']
+        if customer.objects.filter(email=email,password=password):
+
+            return redirect('/homepage.html')
+
+        else:
+            messages.info(request,"INVALID CREDENTIALS")
+            return redirect('/customer_login.html')
+    else:
+        return render(request,'customer_login.html')
+
+def pharmacy_login(request):
+    if request.method == "POST":
+        email = request.POST['email']
+        password = request.POST['password']
+        if pharmacyowner.objects.filter(email=email, password=password):
+
+            return redirect('/homepage.html')
+
+        else:
+            messages.info(request, "INVALID CREDENTIALS")
+            return redirect('/pharmacy_login.html')
+    else:
+
+        return render(request,'pharmacy_login.html')
+
+
 def reegister_pharmacy(request):
 
     if request.method == "POST":
