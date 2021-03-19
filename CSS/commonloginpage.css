@@ -1,0 +1,52 @@
+*{
+    font-family:Catamaran;
+    
+    
+}
+
+.box 
+{
+    border: 1px solid black;
+    width:40%;
+    height:400px;
+    display: inline-block;
+    margin-top:100px ;
+    margin-left:100px;
+    text-align:center;
+    background-color:#f3f3f3;
+    font-family:Catamaran;
+    
+    text-shadow:2px 2px 8px rgb(219, 214, 214);
+    color:rgb(0, 0, 0);
+
+}
+
+.box1
+{
+    background-image:url(customer_login_img.jfif)
+}
+
+.box2
+{
+    background-image:url(pharmacy_login_img.jpg);
+}
+.button{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family:Catamaran;
+    margin-top:200px
+}
+
+
+.pharmacy_image
+{
+    width:auto;
+    border:2px solid black;
+    margin-top:30px;
+    margin-left:400px;
+
+}
