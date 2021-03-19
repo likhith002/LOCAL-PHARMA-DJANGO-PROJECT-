@@ -1,0 +1,100 @@
+*{
+    font-style: catamaran;
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size: cover;
+    margin:0px;
+    padding:0px;
+    color:black;
+
+}
+
+
+
+
+.general_detailes
+{
+   
+   
+   
+    margin-top:50px;
+    margin-left:120px;
+    text-align:center;
+    border:2px solid black;
+  
+    padding:100px;
+    position: absolute;
+    transition: 0.25s;
+    width:70%;
+}
+
+
+ul{
+    list-style: none;
+}
+
+
+
+.pd
+{
+    border-style:double;
+    border:2px solid rgba(10, 160, 230, 0.459);
+   
+    height: 25px;
+    margin-top:20px;
+    width:350px;
+    text-align: center;
+    
+    font-weight: bold;
+    padding:20px;
+    box-sizing: border-box;
+   
+}
+
+p
+{
+    color:  rgba(122, 207, 247, 0.925);
+}
+
+
+.contact_detailes
+{
+    margin-left: -80px;
+    margin-right: 20px;
+
+}
+
+.name{
+    margin-left: -30px;
+    margin-right:31px;
+}
+
+.email{
+
+    margin-left: -50px;
+}
+
+.gender_detailes 
+{
+    margin-left:-770px;
+}
+
+.Account
+{
+    text-align: center;
+}
+
+
+.Account input
+{
+
+    display: block;
+    margin-left:350px;
+    
+}
+
+
+.address input
+{
+    margin-right:70px;
+}
