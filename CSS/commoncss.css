@@ -1,0 +1,118 @@
+*{
+    font-family: Catamaran;
+    list-style: none;
+
+}
+
+body
+{
+    background-color:#fff;
+    margin:0;
+    padding:0;
+}
+
+header
+{
+    width:200%;
+    height:120px;
+    background-color:#f3f3f3;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #111;
+    font-size:24px;
+   
+}
+
+a:hover{
+
+    color: rgb(140, 225, 236);
+}
+
+a
+{
+    text-decoration:none;
+
+}
+
+
+ footer ul li a
+{
+    font-family: Catamaran;
+    text-decoration: none;
+}
+
+@media only screen and (min-width:1000px)
+{
+    
+footer{
+    
+    padding:40px 40px ;
+    background-color: #111;
+    margin-top: 2000px;
+    height:200px;
+    overflow: hidden;
+  
+}
+
+footer ul{
+
+    width:fit-content;
+    float:left;
+    padding-left: 20px;
+
+}
+
+footer ul li{
+    
+    display: block;
+    list-style: none;
+    
+    
+}
+
+footer ul li a{
+
+    font-family: Catamaran;
+    font-size:14px;
+    color:#fff;
+    line-height: 40px;
+    display: block;
+}
+
+
+.footer_logo
+{
+    margin-left:600px;
+    margin-top:80px;
+    text-transform:uppercase;
+    display: block;
+}
+
+.social_media
+{
+    width:100%;
+    margin-left: 1200px;
+    display: block;
+
+    margin-top:-150px;
+    margin-bottom:0px;
+    position: absolute;
+    
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  .footertitle
+  {
+      display: block;
+      margin-top:10px;
+
+  }
+}
