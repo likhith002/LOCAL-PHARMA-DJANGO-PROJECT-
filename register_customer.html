@@ -1,0 +1,141 @@
+{% load static %}
+
+<!DOCTYPE HTML>
+<html>
+
+    <head>
+
+        <title>
+            CUSTOMER REGISTRATION
+        </title>
+
+        <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'CSS/register_customer.css'  %}" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+        <script src="{% static 'JS/confirmpassword.js' %}"></script>
+
+       
+    </head>
+
+    <body >
+        
+        <header>
+            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="200"></a>
+                </span>
+        </header>
+
+        <br>
+        <br>
+        <center class="registration_form">
+            <h2 style="font-weight:bold;font-size:24px" >CUSTOMER REGISTRATION</h2>
+
+           
+            <form action="/register_customer.html" method="post"  class="general_detailes" >
+
+                
+                {% csrf_token %}                
+                
+                <p style="font-weight:bold;" >Personal information</p>
+                <input  class="pd name" type="text" placeholder="First Name" required name="firstname">
+                
+                <input class="pd name"  type="text" placeholder="Middle Name" name="middlename">
+                
+                <input class="pd name"  type="text" placeholder="Last Name" required  name="lastname">
+               <br>
+               <br>
+               <br>
+
+                
+                <div class="gender_detailes">
+                    <label for="gender" style="font-weight:bold;color:rgba(122, 207, 247, 0.925);">Gender:</label>
+                      <input type="radio" name="gender" value="Male">  Male
+                      <input type="radio" name="gender" value="Female">   Female
+                     <input type="radio" name="gender" value="Others">  Others<br><br><br>
+    
+                </div>
+                <div class="contact_detailes">
+                    <label for="DOB">DOB:</label>
+                    <input class="pd " type="date" placeholder="Date of birth"   name="DOB" max="2021-0-05" required>
+    
+                    <input class="pd"  type="tel" placeholder="Mobile No 1" required pattern="[0-9]{10}" name="phone1">
+                    <input class="pd"  type="tel" placeholder="Mobile No 2(optional)" name="phone2">
+    
+                </div>
+               
+                
+                <div class="Account">
+                    <br><br>
+               <p style="font-weight:bold;  "> Create Account </p>
+                 
+                <input class="pd"  type="email" placeholder="Email" required name="email">
+                <input class="pd"  type="password" placeholder="Password" required minlength="8" maxlength="8" id="password" name=password>
+                <input class="pd"  type="password" placeholder="confirm password" required minlength="8" maxlength="8" id="confirm_password"><br><br>
+                
+                <div>
+                    {% for message in messages %}
+                    <h4 style="font-size:20px">{{message}} </h4>
+                    {% endfor%}
+
+                </div>
+               </div>
+
+               
+                <p class="address" style="font-weight:bold;" >Address </p>
+
+                    <input  class="pd" type="text" placeholder="City/Village" required name="city">
+                    <input  class="pd" type="text " placeholder="Street No/Door No" required name="streetno">
+                    <input class="pd" type="text " placeholder="State" required name="state">
+                    <input  class="pd" type="text " placeholder="Country " required name="country">
+
+
+
+                    <input  class="pd pincode" type="number" placeholder="Pin code" required minlength="6" maxlength="6" name="pincode"><br><br><br><br>
+
+                    <input  type="submit" onsubmit="matchPassword()" value="Register">
+                    <input type="reset" ><br><br>
+                
+                    <h4>Already a user click hear for <a href="customer_login.html">Login</h4>
+                </form>
+           
+
+
+          
+        </center>
+
+
+        <footer style="margin-top:100%;height:10%">
+            <ul>
+                <li><a href="homepage.html"> Home </a></li><br>
+                <li><a href="services.html"> Services </a></li><br>
+                <li><a href="contact.html">Contact Us</a></li><br>
+               
+                <li><a href="commonloginpage.html"> Log In</a></li><br>
+            </ul>
+            <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150"></a>
+
+                
+            </div>
+          <div class="social_media">
+                <a href="#"> 
+                
+                <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
+                </a><br>
+    
+                <a href="#">
+                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50"> 
+                </a><br>
+                <a href="#">
+                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50"> 
+                </a>
+            </div>
+            <br><br><br><br><br>
+        <div style="margin-left:450px;color:white">  <p >This website is designed and developed by @localpharma</p>
+                     <p>Copyrigths@2020localpharma</p>
+        </div>
+        </footer>
+    
+    </body>
+
+
+</html>
