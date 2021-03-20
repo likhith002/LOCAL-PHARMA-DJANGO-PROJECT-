@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/login.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
+    <script src="{% static 'JS/logincommon.js' %}"></script>
        <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
 
 <title>Login Page</title>
@@ -45,15 +46,18 @@
                         {% csrf_token %}
                 <h1 class="h1">LOGIN</h1>
 
-                <input  class="username" type="email"  name="email" placeholder="Email"  required>
-                <br>
-                <input class="username" type="password"  name="password" placeholder="Password"  required minlength="8" maxlength="8">
-
+                <input  class="username" type="email"  name="email" placeholder="Email"  required id='mail-id'>
+                <br><span id='invalid-mail-id'></span>
+                <input class="username" type="password"  name="password" placeholder="Password" required minlength="8" maxlength="8">
+                <br><span id='password-error'></span>
+                <script>
+                    validity=emailValidate('#mail-id','#invalid-mail-id');
+                </script>
                 <br>
 
                 <input  type="submit" name="" placeholder="submit">
 
-                <p > Doesn't have a account?  <a style="color:black" href="register_customer.html" >  <b> Sign In</b></a> </p>
+                <p > Doesn't have a account?  <a style="color:black" href="register_customer.html" >  <b> Sign Up</b></a> </p>
 
 
             </form>

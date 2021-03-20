@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{% static 'CSS/login.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+    <script src="{% static 'JS/logincommon.js' %}"></script>
    
 <title> Customer Login Page</title>
 
@@ -46,12 +47,15 @@
 
                 <h1 class="h1">LOGIN</h1>
     
-                <input  class="username" type="email" name="email"  placeholder="Email"  required>
-                <br>
+                <input  class="username" type="email" name="email"  placeholder="Email"  required id='mail-id'>
+                <br><span id='invalid-mail-id'></span>
                 <input class="username" type="password"  name="password" placeholder="Password"  required minlength="8" maxlength="8">
     
                 <br>
-    
+                
+                <script>
+                    validity=emailValidate('#mail-id','#invalid-mail-id');
+                </script>
                 <input  type="submit" name="" placeholder="submit">
     
                 <p > Doesn't have a account?  <a style="color:black" href="register_customer.html" >  <b> Sign In</b></a> </p> 
