@@ -11,14 +11,54 @@
         <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
         <link rel="stylesheet" href="{% static 'CSS/commonloginpage.css'  %}" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+        <style>
+
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+
+
+        </style>
     </head>
 
 
     <body>
         
         <header>
-            <span style="margin-left: 50px ; margin-top:50px;" class="header_nav"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150">
-                <a href="homepage.html"  ></a> </span>
+            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="150"></a>
+                </span>
+
+             <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
+
         </header>
 
         <div>
@@ -28,15 +68,15 @@
         <main class="twoboxes">
 
             
-            <div class="box box1">
+            <div class="box box1" style="background-image:url({% static 'IMAGES/customer_login_img.jfif' %})">
                 <h2>CUSTOMER LOGIN</h2>
 
-                <button class="button" onclick="window.location.href='customer_login.html'"> Customer login</button>
+                <button class="button"   onclick="window.location.href='customer_login.html'"> Customer login</button>
 
 
             </div>
 
-            <div class="box box2">
+            <div class="box box2" style="background-image:url({% static 'IMAGES/pharmacy_login_img.jpg' %})">
                 <h2> PHARMACY OWNER LOGIN </h2>
                 <button class="button" onclick="window.location.href='pharmacy_login.html'"> Pharmacy  login</button>
 
