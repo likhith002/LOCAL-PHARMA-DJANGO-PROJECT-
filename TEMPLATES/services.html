@@ -7,13 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
-    
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <style>
         *{
     list-style:square;
-   
-
 }
 
 h1{
@@ -33,54 +30,100 @@ h1{
     padding: 10px;
 }
     </style>
+    <style>
+        .jumbotron {
+          background-color: powderblue;
+          color: #fff;
+        }
+
+        .nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+        </style>
     <title>Services</title>
 </head>
 <body>
     <header>
-        <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="200"></a>
+        <span style="margin-left: 0px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="180" height="120"></a>
             </span>
+            <span>
+
+                <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                </ul>
+
+                </div>
+
+
+        </span>
     </header>
 
     <br>
     <br>
-        <h1>Services</h1>
+    <div class="jumbotron text-center" style="margin-top:-139px">
+        <h1 style="margin-left:-20px;">SERVICES</h1>
+        <p>Have a look on the services we provide</p>
+    </div>
     <div class="services">
         <ul>
             <li>We helps the customers to find the medicines in nearby stores.</li>
 
             <li>We also give the customers information of medicines such as expiry date,quantity,side affects,price,usage quantity etc.</li>
             <li>We helps you to find whether there is available quatity of medicine you required or not, also if medicine is available the customer can be able to see the nearby stores in which the medicine is available</li>
-            <li>Customers can be able to see the cost of the medicines and many features of medicine. We register with certified pharmacies which provide quality products to customers.  
-    
+            <li>Customers can be able to see the cost of the medicines and many features of medicine. We register with certified pharmacies which provide quality products to customers.
+
             </li>
-            
+
         </ul>
 
     </div>
-    
-     <footer style="margin-top:100px">
+
+     <footer style="margin-top:150px;height:20%">
             <ul>
                 <li><a href="homepage.html"> Home </a></li><br>
                 <li><a href="services.html"> Services </a></li><br>
                 <li><a href="contact.html">Contact Us</a></li><br>
-               
+
                 <li><a href="commonloginpage.html"> Log In</a></li><br>
             </ul>
             <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150"></a>
 
-                
+
             </div>
           <div class="social_media">
-                <a href="#"> 
-                
+                <a href="#">
+
                 <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
                 </a><br>
-    
+
                 <a href="#">
-                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50"> 
+                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50">
                 </a><br>
                 <a href="#">
-                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50"> 
+                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50">
                 </a>
             </div>
         </footer>
