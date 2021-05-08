@@ -10,7 +10,36 @@
     <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
     <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
     <script src="{% static 'JS/logincommon.js' %}"></script>
-   
+
+    <style>
+               .nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+
+
+    </style>
+
 <title> Customer Login Page</title>
 
 </head>
@@ -18,17 +47,27 @@
 
 <body>
 
-    
+
     <header>
-        <span style="margin-left: 50px ; margin-top:50px;" ><a href="homepage.html"><img  src="{% static 'IMAGES/logo.jpg' %}" width="200" height="200"></a>
+        <span style="margin-left: 50px ; margin-top:50px;" ><a href="homepage.html"><img  src="{% static 'IMAGES/logo.jpg' %}" width="200" height="150"></a>
              </span>
+
+         <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
     </header>
-    
+
     <main>
 
         <center>
 
-        
+
 
             <h1 style="font-size:24px; margin-top:150px"> CUSTOMER LOGIN </h1>
 
@@ -36,37 +75,37 @@
 
                 <div>
                     {% for message in messages %}
-                    <h4 style="font-size:20px">{{message}} </h4>
+                    <h4 style="font-size:20px;color:red">{{message}} </h4>
                     {% endfor%}
 
                 </div>
-    
+                
             <form class="box" action="/customer_login.html" method="post">
 
                             {% csrf_token %}
 
                 <h1 class="h1">LOGIN</h1>
-    
-                <input  class="username" type="email" name="email"  placeholder="Email"  required id='mail-id'>
+
+                <input  class="username" type="text" name="username"  placeholder="Username"  required >
                 <br><span id='invalid-mail-id'></span>
-                <input class="username" type="password"  name="password" placeholder="Password"  required minlength="8" maxlength="8">
-    
+                <input class="username" type="password"  name="password" placeholder="Password"  required minlength="8" >
+
                 <br>
-                
+
                 <script>
                     validity=emailValidate('#mail-id','#invalid-mail-id');
                 </script>
                 <input  type="submit" name="" placeholder="submit">
-    
-                <p > Don't have an account?  <a style="color:black" href="register_customer.html" >  <b> Sign Up</b></a> </p> 
-    
-               
+
+                <p > Don't have an account?  <a style="color:black" href="register_customer.html" >  <b> Sign Up</b></a> </p>
+
+
             </form>
-    
+
         </center>
-    
+
     </main>
-   
+
 
 
     <footer style="margin-top:50%;height:20%">
@@ -74,26 +113,26 @@
             <li><a href="homepage.html"> Home</a></li><br>
             <li><a href="services.html"> Services </a></li><br>
             <li><a href="contact.html">Contact Us</a></li><br>
-           
+
             <li><a href="#"> Register</a></li><br>
         </ul>
 
         <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg' %}" alt="" width="150" height="150"></a>
 
-                
+
         </div>
-        
+
       <div class="social_media" style="margin-left:1250px">
-            <a href="#"> 
-            
+            <a href="#">
+
             <img src="{% static 'IMAGES/facebook_logo.png' %}" alt="" width="50" height="50" >
             </a><br>
 
             <a href="#">
-            <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50"> 
+            <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50">
             </a><br>
             <a href="#">
-            <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50"> 
+            <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50">
             </a>
         </div>
 

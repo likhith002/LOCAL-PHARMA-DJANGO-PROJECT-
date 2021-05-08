@@ -14,21 +14,64 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
 
+        <style>
 
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+
+
+        </style>
 
     </head>
 
     <body >
 
         <header>
-            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="200"></a>
+            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="150"></a>
                 </span>
+             <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
         </header>
 
         <br>
         <br>
         <center class="registration_form">
             <h2 style="font-weight:bold;font-size:24px" >CUSTOMER REGISTRATION</h2>
+
+            <div>
+                    {%  for message in messages %}
+                    <h4 style="font-size:20px;color:red"> {{ message}}</h4>
+                    {% endfor %}
+                </div>
 
 
             <form action="/register_customer.html" method="post"  class="general_detailes" novalidate id='reg_form' >
@@ -71,20 +114,15 @@
                     <br><br>
                <p style="font-weight:bold;  "> Create Account </p>
 
-
+                    <input class="pd" type="text" placeholder="Username" required name="username">
                     <input class="pd" type="email" placeholder="Email" required id='mail-id' name="email">
                     <span id='incorrect_e'></span>
                <input class="pd" type="password" placeholder="Password" required
-                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="password" name="password">
+                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="password" name="password" minlength="8">
                     <input class="pd" type="password" placeholder="confirm password" id="confirm_password"
-                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}"><br>
+                        pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" minlength="8"><br>
                     <div id="incorrect_p"> </div>
-                <div>
-                    {% for message in messages %}
-                    <h4 style="font-size:20px">{{message}} </h4>
-                    {% endfor%}
 
-                </div>
                </div>
 
 
@@ -385,7 +423,7 @@
         </center>
 
 
-        <footer style="margin-top:100%;height:10%">
+        <footer style="margin-top:100%;height:20%">
             <ul>
                 <li><a href="homepage.html"> Home </a></li><br>
                 <li><a href="services.html"> Services </a></li><br>

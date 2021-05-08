@@ -1,0 +1,183 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+
+    <title>PHARMACY PROFILE</title>
+    <style>
+        .jumbotron {
+          background-color: powderblue;
+          color: #fff;
+        }
+
+
+
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+        </style>
+</head>
+<body>
+
+<header>
+            <span style="margin-left: 10px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="150"></a>
+                </span>
+
+             <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
+
+        </header>
+
+        <br>
+        <br>
+
+<center>
+    <div class="jumbotron text-center">
+        <h1>PHARMACY PROFILE</h1>
+        <p>A Brief profile of you</p>
+    </div>
+    <div class="container">
+    <table class="table table-hover">
+    <tbody>
+        <tr>
+          <td> <h3>FIRST NAME</h3></td> </h3>
+          <td></td>
+          <td>  <h3>{{data.fname}}</h3></td>
+        </tr>
+        <br>
+        <tr>
+          <td><h3>LAST NAME</h3></td>
+          <td></td>
+          <td><h3>{{data.lname}}</h3></td>
+        </tr>
+        <tr>
+          <td><h3>GENDER</h3></td>
+          <td></td>
+          <td><h3>{{data.gender}}</h3></td>
+        </tr>
+        <tr>
+            <td><h3>E-MAIL</h3></td>
+            <td></td>
+            <td><h3>{{data.email}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>SHOP NAME</h3></td>
+            <td></td>
+            <td><h3>{{data.sname}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>PHONE NO</h3></td>
+            <td></td>
+            <td><h3>{{data.pno}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>CITY</h3></td>
+            <td></td>
+            <td><h3>{{data.city}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>STATE</h3></td>
+            <td></td>
+            <td><h3>{{data.state}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>COUNTRY</h3></td>
+            <td></td>
+            <td><h3>{{data.country}}</h3></td>
+          </tr>
+          <tr>
+            <td><h3>PINCODE</h3></td>
+            <td></td>
+            <td><h3>{{data.pincode}}</h3></td>
+          </tr>
+        <!-- <div id="pdfRenderer"> -->
+          <tr>
+            <td><h3>PERMISSION FILE</h3></td>
+            <td></td>
+            <td><a href="{{data.permission_file.url}}" target="_blank" title=""> PERMISSION FILE </a></td>
+          </tr>
+          <tr>
+            <td><h3>LICENSE FILE</h3></td>
+            <td></td>
+            <td><a href="{{data.license_file.url}}" target="_blank"> LICENSE FILE </a></td>
+          </tr>
+          <!-- <script>
+          var pdf = new PDFObject({
+            url: "http://127.0.0.1:8000/media/New_doc_Apr_23_2021_10.17_tLMmKp8.pdf",
+            id: "pdfRendered",
+            pdfOpenParams: {
+              view: "FitH"
+            }
+          }).embed("pdfRenderer");
+        </script> -->
+      </tbody>
+    </table>
+    </div>
+
+</center>
+
+    <footer style="margin-top:150px;height:20%">
+            <ul>
+                <li><a href="homepage.html"> Home </a></li><br>
+                <li><a href="services.html"> Services </a></li><br>
+                <li><a href="contact.html">Contact Us</a></li><br>
+
+                <li><a href="commonloginpage.html"> Log In</a></li><br>
+            </ul>
+            <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150"></a>
+
+
+            </div>
+          <div class="social_media">
+                <a href="#">
+
+                <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
+                </a><br>
+
+                <a href="#">
+                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50">
+                </a><br>
+                <a href="#">
+                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50">
+                </a>
+            </div>
+
+               <div style="margin-left:450px;color:white">  <p >This website is designed and developed by @localpharma</p>
+                     <p>Copyrigths@2020localpharma</p>
+        </div>
+
+        </footer>
+
+</body>
+</html>
