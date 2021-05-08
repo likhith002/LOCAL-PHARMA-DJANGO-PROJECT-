@@ -1,6 +1,6 @@
 {% load static %}
 <!doctype html>
-<html lang='en'>
+<html>
     <head>
         <title>
             PHARMACY REGISTRATION
@@ -9,32 +9,75 @@
         <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
         <link rel="stylesheet" href="{% static 'CSS/register_customer.css'  %}" type="text/css">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+
+        <style>
+
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+
+
+        </style>
     </head>
 
     <body>
 
         <header>
-            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="400" height="200"></a>
+            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="150"></a>
                 </span>
+             <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
         </header>
 
         <br>
         <br>
         <center class="registration_form">
             <h2 style="font-weight:bold;font-size:24px" >PHARMACY REGISTRATION</h2>
+             <div>
+                    {%  for message in messages %}
+                    <h4 style="font-size:20px;color:red"> {{ message}}</h4>
+                    {% endfor %}
+                </div>
 
-
-            <form action="reegister_pharmacy.html"  class="general_detailes" method="POST" id='reg_form' novalidate>
+            <form action="/reegister_pharmacy.html" enctype="multipart/form-data" class="general_detailes" method="POST" id='reg_form' novalidate>
 
                 {% csrf_token %}
 
 
                 <p style="font-weight:bold;" >Personal information</p>
-                <input  class="pd name" type="text" placeholder="First Name"  name="first_name" id='fname' required pattern="[a-zA-Z]{2,20}">
+                <input  class="pd name" type="text" placeholder="First Name"  name="firstname" id='fname' required pattern="[a-zA-Z]{2,20}">
 
-                <input class="pd name"  type="text" placeholder="Middle Name" name="middle_name" id='mname' pattern="[a-zA-Z]{2,20}">
+                <input class="pd name"  type="text" placeholder="Middle Name" name="middlename" id='mname' pattern="[a-zA-Z]{2,20}">
 
-                <input class="pd name"  type="text" placeholder="Last Name" required name="last_name" id='lname' pattern="[a-zA-Z]{2,20}">
+                <input class="pd name"  type="text" placeholder="Last Name" required name="lastname" id='lname' pattern="[a-zA-Z]{2,20}">
                 <input class="pd name" type="text" name="shopname" placeholder="Shop Name" id='shopname' pattern="[\w\d\s]{2,20}">
                 <span id='incorrect_names'></span>
 
@@ -52,8 +95,8 @@
                     <label for="DOB">DOB:</label>
                     <input class="pd " type="date" placeholder="Date of birth"   name="DOB" max="2021-0-05" required>
 
-                    <input class="pd"  type="tel" placeholder="Mobile No 1" required pattern="[0-9]{10}" name="mobile_no" id='mob1'>
-                    <input class="pd"  type="tel" placeholder="Mobile No 2(optional)" name="mobile_no2" pattern="[0-9]{10}" id='mob2'>
+                    <input class="pd"  type="tel" placeholder="Mobile No 1" required pattern="[0-9]{10}" name="phone1" id='mob1'>
+                    <input class="pd"  type="tel" placeholder="Mobile No 2(optional)" name="phone2" pattern="[0-9]{10}" id='mob2'>
                     <span id='incorrect_m'></span>
                 </div>
 
@@ -62,22 +105,19 @@
                     <br><br>
                <p style="font-weight:bold;  "> Create Account </p>
 
+                    <input  class="pd" type="text" name="username" placeholder="Username" required>
                 <input class="pd"  type="email" placeholder="Email" required name="email" id='mail-id'>
                 <span id='incorrect_e'></span>
-                <input class="pd"  type="password" placeholder="Password" pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="password" name="password">
-                <input class="pd"  type="password" placeholder="confirm password" pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="confirm_password"><br>
-                <div id="incorrect_p"> </div>
-                <div>
-                    {%  for message in messages %}
-                    <h4 style="font-size:20px"> {{ message}}</h4>
-                    {% endfor %}
-                </div>
+                <input class="pd"  type="password" placeholder="Password" pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="password" name="password" minlength="8">
+                <input class="pd"  type="password" placeholder="confirm password" pattern="[a-zA-Z0-9!@#$%^&*()_\-+=;><.,/?]{8,16}" id="confirm_password" minlength="8"><br>
+                <div id="incorrect_p"  > </div>
+
                </div>
 
                <div>
                 <p style="font-weight:bold;">File Upload</p>
-                Lisence Agreement:<input name='license' class="" type="file"  ><br><br>
-                Permission From Government:<input name='permission' class="" type="file"  ><br><br><br>
+                Lisence Agreement:<input  class="" type="file" name="license_file"  ><br><br>
+                Permission From Government:<input  class="" type="file"   name="permission_file"><br><br><br>
 
 
             </div>
@@ -86,7 +126,7 @@
                 <p class="address" style="font-weight:bold;" >Address </p>
 
                     <input  class="pd" type="text" placeholder="City/Village" required name="city">
-                    <input  class="pd" type="text " placeholder="Street No/Door No" required name="door_no">
+                    <input  class="pd" type="text " placeholder="Street No/Door No" required name="streetno">
                     <input class="pd" type="text " placeholder="State" required name="state">
                     <input  class="pd" type="text " placeholder="Country " required name="country">
 
@@ -98,7 +138,7 @@
                     <input type="reset" ><br><br>
                     <span id='submission-error'></span>
 
-                    <h4>Already have an account? <a href="customer_login.html" style="color:rgba(122, 207, 247, 0.925);;">Login</h4>
+                    <h4>Already have an account? <a href="pharmacy_login.html" style="color:rgba(122, 207, 247, 0.925);;">Login</h4>
                 </form>
 
                 <script>
@@ -401,7 +441,7 @@
         </center>
 
 
-        <footer style="margin-top:1500px">
+        <footer style="margin-top:1500px; height:20%">
             <ul>
                 <li><a href="homepage.html"> Home </a></li><br>
                 <li><a href="services.html"> Services </a></li><br>
