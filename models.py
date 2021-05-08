@@ -7,7 +7,8 @@ class pharmacyowner(models.Model):
     lastname = models.CharField(max_length=30)
     email= models.CharField(max_length=254)
 
-    lisence=models.FileField()
+    license_file = models.FileField(null=True)
+    permission_file = models.FileField(null=True)
     gender_choices = (
         ('Male', 'Male'),
         ('Female', 'Female'),
@@ -20,7 +21,7 @@ class pharmacyowner(models.Model):
     
     shopname = models.CharField(max_length=50)
     DOB=models.DateField()
-    password = models.CharField(max_length=16)
+
     city = models.CharField(max_length=250)
     streetno=models.CharField(max_length=50)
     state=models.CharField(max_length=50)
