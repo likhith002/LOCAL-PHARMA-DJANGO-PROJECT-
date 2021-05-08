@@ -490,6 +490,105 @@ def change_password(request):
 def logout(request):
     auth.logout(request)
     return redirect('homepage.html')
+    
+    
+def edit(request):
+
+    if request.method=="POST":
+        price = request.POST['price']
+        quantity = request.POST['quantity']
+        mid = request.POST['mid']
+        peid = request.session['peid']
+
+        if pharmacymedicine.objects.filter(mid=mid ,eid=peid):
+            obj=pharmacymedicine.objects.get(mid=mid ,eid=peid)
+            obj.price=price
+            obj.quantity=quantity
+            obj.save()
+
+            messages.info(request, "Medicine updated successfully",extra_tags='update_success')
+
+            if pharmacyowner.objects.filter(email=peid):
+                po = pharmacyowner.objects.get(email=peid)
+                name = po.firstname
+                return render(request, 'pharmacy_query.html', {'Name': name})
+
+        else:
+            po = pharmacyowner.objects.get(email=peid)
+            name = po.firstname
+            messages.info(request, "The medicine you are updating is not present in your record please add it",extra_tags='update_error')
+            return render(request, 'pharmacy_query.html', {'Name': name})
+
+def add(request):
+
+    if request.method=="POST":
+
+        price=request.POST['price']
+        quantity=request.POST['quantity']
+        mn=request.POST['mid']
+        peid = request.session['peid']
+
+
+        obj2=pharmacyowner.objects.get(email=peid)
+
+
+
+        if pharmacymedicine.objects.filter(eid=peid,mid=mn):
+            messages.error(request,"medicine you are adding is already present",extra_tags='add_error')
+
+        else:
+
+            obj=pharmacymedicine(eid=peid,price=price,quantity=quantity,mid=mn,pin=obj2.pincode,firstname=obj2.firstname,middlename=obj2.middlename,lastname=obj2.lastname,phone1=obj2.phone1,streetno=obj2.streetno,city=obj2.city,state=obj2.state,shopname=obj2.shopname)
+            obj.save()
+            messages.success(request, "Medicine added successfully", extra_tags='add_success')
+            print("data written to database successfully")
+
+        if pharmacyowner.objects.filter(email=peid):
+            po = pharmacyowner.objects.get(email=peid)
+            name = po.firstname
+
+            return render(request, 'pharmacy_query.html', {'Name': name})
+
+def complete_detailes(request):
+
+    mname=request.session['medicinename']
+    obj=medicine.objects.get(name=mname)
+    medi_data={}
+    medi_data["mediname"] = obj.manufacturer_name
+    medi_data["type"] = obj.type
+    medi_data["price"] = obj.price
+    medi_data["name"] = obj.name
+    medi_data["scomp"] = obj.short_composition
+    medi_data["psize"] = obj.pack_size_label
+    medi_data["prescription"] = obj.isprescriptionrequired
+    medi_data["image"] = obj.image_url
+    #---------------------------------------------------------------
+    medi_data["side_effects"]=eval(obj.side_effects)
+    medi_data["alternate"]=eval(obj.alternate_brands)
+    medi_data["benefits"]=eval(obj.benefits)
+    medi_data["uses"]=eval(obj.uses)
+    medi_data["storage"]=obj.storage_conditions
+    medi_data["salt"]=obj.salt_composition
+
+    return render(request, 'complete_medicines.html', {'medi_data':medi_data})
+
+
+def edit_profile(request):
+    return render(request, 'edit_profile.html')
+
+
+def edit_customer_profile(request):
+    return render(request, 'edit_customer_profile.html')
+
+
+def check_update(request):
+    if request.user.is_authenticated:
+
+        if customer.objects.filter(email=request.user.email):  # checking either email is registered or not
+            return render(request, 'edit_customer_profile.html')
+        else:
+            return render(request, 'edit_profile.html')
+
 
 
 
