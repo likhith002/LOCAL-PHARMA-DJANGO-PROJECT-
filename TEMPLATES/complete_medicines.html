@@ -1,0 +1,187 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MEDICINE DETAILS</title>
+     <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
+         <link rel="stylesheet" href="{% static 'CSS/register_customer.css'  %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'CSS/pharmacy_query.css'  %}" type="text/css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+.jumbotron {
+    background-color: powderblue;
+    color: #fff;
+  }
+
+    </style>
+
+    </head>
+
+<header>
+            <span style="margin-left: 0px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="119"></a>
+                </span>
+     <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
+
+        </header>
+
+<body>
+    <div class="jumbotron text-center" style="margin-top: -100px;">
+        <h1>MEDICINE DETAILS</h1>
+        <p style="color:#fff;">Find Detailed Description of Your Medicines Here</p>
+    </div>
+    <div>
+        <center>
+        <div class="container" >
+            <table class="table table-hover">
+            <tbody>
+
+                <br>
+                <tr>
+                  <td><h3>NAME</h3></td>
+                  <td></td>
+                  <td><h3>{{medi_data.name}}</h3></td>
+                </tr>
+                <tr>
+                  <td><h3>MAXIMUM RETAIL PRICE</h3></td>
+                  <td></td>
+                  <td><h3>{{medi_data.price}}</h3></td>
+                </tr>
+                <tr>
+                    <td><h3>MANUFACTURER NAME</h3></td>
+                    <td></td>
+                    <td><h3>{{medi_data.mediname}}</h3></td>
+                  </tr>
+
+                <tr>
+                    <td><h3>SALT COMPOSITION</h3></td>
+                    <td></td>
+                    <td><h3>{{medi_data.salt}}</h3></td>
+                </tr>
+
+                <tr>
+                    <td><h3>STORAGE</h3></td>
+                    <td></td>
+                    <td><h3>{{medi_data.storage}}</h3></td>
+                </tr>
+                <tr>
+                    {%if medi_data.uses is not None %}
+                    <td><h3>USES</h3></td>
+                    <td></td>
+                    <td>{% for inx in medi_data.uses %}
+                        <h3>{{inx}}</h3>
+                        {% endfor %}</td>
+                    {%endif%}
+                </tr>
+
+                <tr>
+                    {%if medi_data.benefits is not None %}
+                    <td><h3>BENEFITS</h3></td>
+                    <td></td>
+                    <td>
+                        {% for inx in medi_data.benefits %}
+                       <h3>{{inx}}</h3></td>
+                       {% endfor %}
+                    {%endif%}
+                </tr>
+                <tr>
+                    {%if medi_data.side_effects is not None %}
+                    <td><h3>SIDE EFFECTS</h3></td>
+                    <td></td>
+                    <td>{% for inx in medi_data.side_effects %}
+                        <h3>{{inx}}</h3>
+                        {% endfor %}</td>
+                    {%endif%}
+                </tr>
+                <tr>
+                    {%if medi_data.alternate is not None%}
+                    <td><h3>ALTERNATE BRANDS</h3></td>
+                    <td></td>
+                    <td>{% for inx in medi_data.alternate %}
+                        <h3>{{inx}}</h3>
+                        {% endfor %}</td>
+                    {%endif%}
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        </center>
+
+
+
+
+    </div>
+
+</body>
+
+<!--------------------------------------------------------------------------------------------------------------------------->
+    <footer style="margin-top:17%;height:20%">
+        <ul>
+            <li><a href="homepage.html"> Home </a></li><br>
+            <li><a href="services.html"> Services </a></li><br>
+            <li><a href="contact.html">Contact Us</a></li><br>
+
+            <li><a href="commonloginpage.html"> Log In</a></li><br>
+        </ul>
+        <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png' %} " width="150" height="150"></a>
+
+
+        </div>
+      <div class="social_media">
+            <a href="#">
+
+            <img src="{% static 'IMAGES/facebook_logo.png' %}" alt="" width="50" height="50" >
+            </a><br>
+
+            <a href="#">
+            <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50">
+            </a><br>
+            <a href="#">
+            <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50">
+            </a>
+        </div>
+    </footer>
+
+
+
+
+</body>
+</html>
