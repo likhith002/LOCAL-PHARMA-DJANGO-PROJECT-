@@ -301,7 +301,7 @@ def profile_update(request):
                     messages.info(request,
                                   "The information you are updating is not present in your record please add it",
                                   extra_tags='update_error')  # shows messages
-                    return render(request, 'edit_custumer_profile.html', )
+                    return render(request, 'edit_customer_profile.html', )
         else:
             if request.method == "POST":
                 firstname = request.POST['firstname']  # Post method helps to access data from html page
