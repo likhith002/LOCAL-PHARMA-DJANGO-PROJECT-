@@ -12,6 +12,124 @@ def show_meds(request):
 	else:
 		return render(request,'medicine.html')
 
+def register_customer(request):
+
+
+    if request.method == "POST":
+
+        username=request.POST['username']
+        firstname = request.POST['firstname']
+        middlename=request.POST['middlename']
+        lastname=request.POST['lastname']
+        email=request.POST['email']
+        gender=request.POST.get('gender',"Male")
+        
+        DOB=request.POST['DOB']
+        phone1=request.POST['phone1']
+        phone2=request.POST['phone2']
+        password=request.POST['password']
+        city=request.POST['city']
+        streetno=request.POST['streetno']
+        state=request.POST['state']
+        country=request.POST['country']
+        pincode=request.POST['pincode']
+
+        if customer.objects.filter(email=email ).exists():
+            messages.info(request,"Email already exists please provide another Email")
+            return redirect('/register_customer.html')
+
+        if User.objects.filter(username=username).exists():
+            messages.info(request,"Username already exists please provide another")
+            return redirect('/register_customer.html')
+
+        if User.objects.filter(email=email).exists():
+            messages.info(request, "Email already exists please provide another")
+            return redirect('/register_customer.html')
+
+        else:
+            obj=customer(firstname=firstname, gender=gender,middlename=middlename,lastname=lastname,email=email,DOB=DOB,phone1=phone1,phone2=phone2,city=city,streetno=streetno,state=state,country=country,pincode=pincode)
+            obj.save()
+            User.objects.create_user(username=username,password=password,email=email).save()
+            print("data has been written to DB Successfully")
+            return  redirect('/customer_login.html')
+    else:
+        return render(request,'register_customer.html')
+
+def profile(request):
+    if request.user.is_authenticated:
+
+        if customer.objects.filter(email=request.user.email):
+           email = request.session['ceid']
+
+           obj=customer.objects.get(email=email)
+           data={}
+           data["fname"]=obj.firstname
+           data["lname"]=obj.lastname
+           data["gender"]=obj.gender
+           data["pno"]=obj.phone1
+           data["city"]=obj.city
+           data["state"]=obj.state
+           data["country"]=obj.country
+           data["email"]=obj.email
+           data["DOB"]=obj.DOB
+           data["pincode"]=obj.pincode
+           return render(request,'customer_profile.html',{'data':data})
+
+        else:
+            peid = request.session['peid']
+
+            obj=pharmacyowner.objects.get(email=peid)
+            data={}
+            data["fname"]=obj.firstname
+            data["lname"]=obj.lastname
+            data["gender"]=obj.gender
+            data["pno"]=obj.phone1
+            data["city"]=obj.city
+            data["state"]=obj.state
+            data["country"]=obj.country
+            data["email"]=obj.email
+            data["sname"]=obj.shopname
+            data["DOB"]=obj.DOB
+            data["pincode"]=obj.pincode
+            data["license_file"] = obj.license_file
+            data["permission_file"] = obj.permission_file
+            return render(request,'pharmacy_profile.html',{'data':data})
+
+
+
+    else:
+
+        return render(request,'homepage.html')
+
+
+def customer_login(request):
+
+    if request.method=="POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            auth.login(request, user)
+            U = User.objects.get(username=username)
+
+            if customer.objects.filter(email=U.email):
+                c= customer.objects.get(email=U.email)
+                name = c.firstname
+                request.session['ceid'] = U.email
+
+                return render(request,'customer_query.html',{'Name':name})
+
+            else:
+                messages.info(request, "INVALID CREDENTIALS")
+                return render(request, 'customer_login.html')
+
+        else:
+            messages.info(request,"INVALID CREDENTIALS")
+            return render(request,'customer_login.html')
+    else:
+        return render(request,'customer_login.html')
+
 def profile_update(request):
     if request.user.is_authenticated:
 
