@@ -1,3 +1,135 @@
+from django.shortcuts import render,redirect
+from django.http import HttpResponse, JsonResponse
+from django.contrib import messages
+from localpharma.models import pharmacyowner
+from localpharma.models import customer
+from localpharma.models import contactus
+from localpharma.models import pharmacymedicine
+from localpharma.models import medicine
+from django.contrib.auth.models import User ,auth
+from django.http import JsonResponse
+# Create your views here.
+
+
+
+def check_query(request):
+    if request.user.is_authenticated:
+
+        if customer.objects.filter(email=request.user.email):
+            c=customer.objects.get(email=request.user.email)
+
+            name = c.firstname
+            return render(request, 'customer_query.html', {'Name': name})
+
+        else:
+            po = pharmacyowner.objects.get(email=request.user.email)
+            name = po.firstname
+
+            return render(request, 'pharmacy_query.html', {'Name': name})
+
+
+
+    else:
+
+        return render(request,'homepage.html')
+
+
+
+
+def homepage(request):
+    return render(request, 'homepage.html')
+
+
+def pharmacy_query(request):
+
+    return render(request,'pharmacy_query.html')
+
+
+
+
+def autocomplete(request):
+    if 'term' in request.GET:
+        obj=medicine.objects.filter(name__istartswith=request.GET.get('term'))
+        medicines=list()
+        for medi_name in obj:
+            medicines.append(medi_name.name)
+
+        return JsonResponse(medicines,safe=False)
+
+    return render(request,'pharmacy_query.html')
+
+
+def customer_search(request):
+    if 'term' in request.GET:
+        obj=medicine.objects.filter(name__istartswith=request.GET.get('term'))
+        medicines=list()
+        for medi_name in obj:
+            medicines.append(medi_name.name)
+
+        return JsonResponse(medicines,safe=False)
+
+    return render(request,'customer_query.html')
+
+
+
+
+def customer_query(request):
+
+    if request.method=="POST":
+
+        mide=request.POST['mid']
+
+        obj=medicine.objects.get(name=mide)
+        medi_data={}
+        medi_data["mname"]=obj.manufacturer_name
+        medi_data["type"]=obj.type
+        medi_data["price"]=obj.price
+        medi_data["name"]=obj.name
+        medi_data["scomp"]=obj.short_composition
+        medi_data["psize"]=obj.pack_size_label
+        medi_data["prescription"]=obj.isprescriptionrequired
+        medi_data["image"]=obj. image_url
+
+        ceid=request.session['ceid']
+
+        request.session['medicinename']=mide
+
+
+        po = customer.objects.get(email=ceid)
+
+        name = po.firstname
+        cpin=po.pincode
+
+
+        obj=medicine.objects.get(name=mide)
+
+        pd=pharmacymedicine.objects.filter(mid=mide,pin=cpin)
+        for k in range(-5,5,1):
+            pd=pd|pharmacymedicine.objects.filter(mid=mide,pin=str(int(cpin)+k))
+
+
+
+        parameters={'medi_data':medi_data,'Name':name,'pdetailes':pd}
+
+        return render(request,'customer_query.html',parameters)
+
+    return render(request,'customer_query.html')
+
+
+
+
+def commonloginpage(request):
+
+    return render(request,'commonloginpage.html')
+
+
+
+
+
+
+
+
+
 def show_meds(request):
 
 	email=request.session['peid']
@@ -358,3 +490,6 @@ def change_password(request):
 def logout(request):
     auth.logout(request)
     return redirect('homepage.html')
+
+
+
