@@ -1,17 +1,14 @@
-{% load static %}
-
 <!doctype html>
 <html>
 
 <head>
-
+    {% load static %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'CSS/login.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
-    <script src="{% static 'JS/logincommon.js' %}"></script>
-       <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+   
 <title>Login Page</title>
 
 </head>
@@ -21,7 +18,7 @@
 
     
     <header>
-        <span style="margin-left: 50px ; margin-top:50px;" ><a href="homepage.html"><img  src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="200"></a>
+        <span style="margin-left: 50px ; margin-top:50px;" ><a href="homepage.html"><img  src="{% static 'IMAGES/logo.jpg' %}" width="200" height="200"></a>
              </span>
     </header>
     
@@ -32,75 +29,57 @@
         
 
             <h1 style="font-size:24px; margin-top:150px"> PHARMACY LOGIN </h1>
-
-
-                <div>
-                    {% for message in messages %}
-                    <h4 style="font-size:20px">{{message}} </h4>
-                    {% endfor%}
-
-                </div>
-
     
-            <form class="box" action="/pharmacy_login.html" method="post">
-                        {% csrf_token %}
+            <form class="box" action="pharmacy_login.html" method="post">
+                {% csrf_token %}
+    
                 <h1 class="h1">LOGIN</h1>
-
-                <input  class="username" type="email"  name="email" placeholder="Email"  required id='mail-id'>
-                <br><span id='invalid-mail-id'></span>
-                <input class="username" type="password"  name="password" placeholder="Password" required minlength="8" maxlength="8">
-                <br><span id='password-error'></span>
-                <script>
-                    validity=emailValidate('#mail-id','#invalid-mail-id');
-                </script>
+    
+                <input  class="username" type="email"  name="email" placeholder="Email"  required>
                 <br>
-
+                <input class="username" type="password"  name="password" placeholder="Password"  required minlength="8" maxlength="8">
+    
+                <br>
+    
                 <input  type="submit" name="" placeholder="submit">
-
-                <p > Don't have an account?  <a style="color:black" href="register_customer.html" >  <b> Sign Up</b></a> </p>
-
-
+    
+                <p > Doesn't have a account?  <a style="color:black" href="register_customer.html" >  <b> Sign In</b></a> </p> 
+    
+               
             </form>
-
+    
         </center>
     
     </main>
    
 
 
-    <footer style="margin-top:50%; height:10%">
+    <footer style="margin-top:600px">
         <ul>
-            <li><a href="homepage.html"> Home</a></li>
-            <br>
             <li><a href="services.html"> Services </a></li><br>
             <li><a href="contact.html">Contact Us</a></li><br>
-            <li><a href="commonloginpage.html">Login</a></li><br>
+            <li><a href="commonloginpage.html">LOGIN</a></li><br>
            
             <li><a href="#"> Register</a></li><br>
         </ul>
 
-        <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="150" height="150"></a>
+        <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="IMAGES/logo.jpg" width="150" height="150"></a>
 
                 
         </div>
       <div class="social_media" style="margin-left:1200px">
             <a href="#"> 
             
-            <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
+            <img src="{% static 'IMAGES/facebook_logo.png' %}" alt="" width="50" height="50" >
             </a><br>
 
             <a href="#">
-            <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50"> 
+            <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50"> 
             </a><br>
             <a href="#">
             <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50"> 
             </a>
         </div>
-        <br><br><br><br>
-           <div style="margin-left:450px;color:white">  <p >This website is designed and developed by @localpharma</p>
-                     <p>Copyrigths@2020localpharma</p>
-        </div>
-
     </footer>
 
 
