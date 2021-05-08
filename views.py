@@ -390,6 +390,10 @@ def contact(request):
     else:
         return render(request,'contact.html')
 
+def services(request):
+    return render(request,'services.html')
+
+
 def reegister_pharmacy(request):
 
     if request.method == "POST":
@@ -548,6 +552,33 @@ def add(request):
             name = po.firstname
 
             return render(request, 'pharmacy_query.html', {'Name': name})
+
+def delete(request):
+
+    if request.method=="POST":
+
+        mid = request.POST['mid']
+        peid = request.session['peid']
+
+
+        if pharmacymedicine.objects.filter(mid=mid ,eid=peid):
+
+            obj=pharmacymedicine.objects.get(mid=mid)
+            obj.delete()
+            messages.error(request, "Medicine deleted successfully",extra_tags='delete_success')
+
+            if pharmacyowner.objects.filter(email=peid):
+                po = pharmacyowner.objects.get(email=peid)
+                name = po.firstname
+                return render(request, 'pharmacy_query.html', {'Name': name})
+
+        else:
+            po = pharmacyowner.objects.get(email=peid)
+            name = po.firstname
+            messages.error(request, "The medicine you are deleting is not present in your record please add it",extra_tags='delete_error')
+            return render(request, 'pharmacy_query.html', {'Name': name})
+
+
 
 def complete_detailes(request):
 
