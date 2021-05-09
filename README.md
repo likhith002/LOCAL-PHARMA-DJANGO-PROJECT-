@@ -81,6 +81,10 @@ This will run your web application on your localserver  127.0.0.1
 
 homepage gives the basic layout of our application containg logo  images of some medicines 
 
+
+![HOMEPAGE](/DOCUMENTATION_IMAGES/homepage.gif)
+
+
 ## MODULE II
 
 ###   USER REGISTRATION
@@ -94,9 +98,13 @@ After entering the website, the user will see the homepage. In the homepage the 
 
 To register into the website the user has to click on register option. There are two types of users in our website i.e customer and pharmacy owner. On clicking on register, customer register and pharmacy register options will visible. If the user is customer he need to click on customer register else he is a pharmacy owner he need to click on  pharmacy register.
 
-CUSTOMER REGISTRATION -> Customer on selecting the customer register option he will be shown a form. Here the customer has to enter the required details in the form such as name, gender, contact information, username, password and his complete address. User can also reset his details. On entering the details he need to click on register option, this way the customer can register into the website. if the customer enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
+### CUSTOMER REGISTRATION 
 
-PHARMACY REGISTRATION -> pharmacy owner on selecting the pharmacy register option he will be shown a form. Here the pharmacy owner has to enter the required details in the form such as shop name, owner, gender, contact information, username, password and his complete address. The owner also needs to upload license file of pharmacy and permission file from government so we can verify he is genuine user. User can also reset his details. On entering the details he need to click on register option, this way the pharmacy owner can register into the website. if the pharmacy enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
+ Customer on selecting the customer register option he will be shown a form. Here the customer has to enter the required details in the form such as name, gender, contact information, username, password and his complete address. User can also reset his details. On entering the details he need to click on register option, this way the customer can register into the website. if the customer enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
+
+### PHARMACY REGISTRATION 
+
+ pharmacy owner on selecting the pharmacy register option he will be shown a form. Here the pharmacy owner has to enter the required details in the form such as shop name, owner, gender, contact information, username, password and his complete address. The owner also needs to upload license file of pharmacy and permission file from government so we can verify he is genuine user. User can also reset his details. On entering the details he need to click on register option, this way the pharmacy owner can register into the website. if the pharmacy enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
 
 On clicking the register button, User will be registered into the website and the information of user will be stored into the website database. The password is encrypted. 
 we have created reegister_pharmacy(request) and register_customer(request)  functions in views.py to implement customer and  pharmacy registration. Here by using **POST**
