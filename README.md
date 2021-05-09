@@ -182,3 +182,60 @@ Here in one page we have two login options.
 ->Pharmacy Login
 When he gives valid credentials he goes to Customer/Pharmacy Query pages or 
 an error message is shown.
+
+
+
+## CUSTOMER AND PHARMACY QUERY
+Once a user is authenticated, he will have the option to either search for medicines if he is registered as a `customer`, or the option to list/update/delete medicines, otherwise.
+When an authenticated user visits out homepage, we determine the type of user and show the appropriate option. The `check_query` view is responsible for checking the type of user.  
+
+- #### CUSTOMER QUERY
+	In **customer query** page we used `jQuery` to implement autocomplete for the search. And in our backend `customer_search` view filters our medicine database, and returns the matching medicines.
+```py
+def  customer_search(request):
+	if  'term'  in  request.GET:
+		obj=medicine.objects.filter(name__istartswith=request.GET.get('term')
+		medicines=list()
+		for  medi_name  in  obj:
+			medicines.append(medi_name.name)
+		
+		return  JsonResponse(medicines,safe=False)
+return  render(request,'customer_query.html')
+```
+And the user searches for one of them, he can see some basic details about the medicine, and he also can see the nearby pharmacies and their details, which sell this particular medicine.
+If he wishes to see more details about the medicine he can click on the more details option.  Here we show detailed information about the medicine, such as `manufacturer name`, `salt composition`, `alternate brands`/`generic alternatives`, `storage conditions`, `side effects`, `benefits`, `uses` etc. 
+
+- #### PHARMACY QUERY
+	In this page we have three options
+
+1. ####  Add 
+	This option allows the pharmacy user to create listings for new medincines. `add` view implements this. 
+```py
+def add(request):
+    if request.method=="POST":
+        price=request.POST['price']
+        quantity=request.POST['quantity']
+        mn=request.POST['mid']
+        peid = request.session['peid']
+        obj2=pharmacyowner.objects.get(email=peid)
+        if pharmacymedicine.objects.filter(eid=peid,mid=mn):
+            messages.error(request,"medicine you are adding is already present",extra_tags='add_error')
+        else:
+            obj=pharmacymedicine(eid=peid,price=price,quantity=quantity,mid=mn,pin=obj2.pincode,firstname=obj2.firstname,middlename=obj2.middlename,lastname=obj2.lastname,phone1=obj2.phone1,streetno=obj2.streetno,city=obj2.city,state=obj2.state,shopname=obj2.shopname)
+            obj.save()
+            messages.success(request, "Medicine added successfully", extra_tags='add_success')
+            print("data written to database successfully")
+        if pharmacyowner.objects.filter(email=peid):
+            po = pharmacyowner.objects.get(email=peid)
+            name = po.firstname
+            return render(request, 'pharmacy_query.html', {'Name': name})
+```
+Here we make sure that there isnt a listing from the same pharmacy for the same medicine already and then make a listing for it.
+
+2. #### Edit 
+	Similarly we have an option to edit existing listings. The `edit` view implements this.
+
+3. #### Delete 
+	The `delete` view implements the feature for deleting listing from a pharmacy user.
+
+To make the process of tracking their listings, we also have `/show_meds` page this lists all the medicines from the currently logged in pharmacy user. The `show_meds` view is responsible for implementing it.
