@@ -81,6 +81,94 @@ This will run your web application on your localserver  127.0.0.1
 
 homepage gives the basic layout of our application containg logo  images of some medicines 
 
+## MODULE II
+
+###   USER REGISTRATION
+
+After entering the website, the user will see the homepage. In the homepage the user will see some options they are 
+1) register
+2) login
+3) search
+4) services
+5) contact us
+
+To register into the website the user has to click on register option. There are two types of users in our website i.e customer and pharmacy owner. On clicking on register, customer register and pharmacy register options will visible. If the user is customer he need to click on customer register else he is a pharmacy owner he need to click on  pharmacy register.
+
+CUSTOMER REGISTRATION -> Customer on selecting the customer register option he will be shown a form. Here the customer has to enter the required details in the form such as name, gender, contact information, username, password and his complete address. User can also reset his details. On entering the details he need to click on register option, this way the customer can register into the website. if the customer enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
+
+PHARMACY REGISTRATION -> pharmacy owner on selecting the pharmacy register option he will be shown a form. Here the pharmacy owner has to enter the required details in the form such as shop name, owner, gender, contact information, username, password and his complete address. The owner also needs to upload license file of pharmacy and permission file from government so we can verify he is genuine user. User can also reset his details. On entering the details he need to click on register option, this way the pharmacy owner can register into the website. if the pharmacy enter an username or name which is matching to another user he will be show a message saying that an user is already registered with that email or username.
+
+On clicking the register button, User will be registered into the website and the information of user will be stored into the website database. The password is encrypted. 
+we have created reegister_pharmacy(request) and register_customer(request)  functions in views.py to implement customer and  pharmacy registration. Here by using **POST**
+method we are taking data from register pages.
+
+```py
+def reegister_pharmacy(request) 		
+	obj=pharmacyowner()						 
+	obj=save()
+							
+def register_customer(request)			
+	obj=customer()		
+	obj=save()
+```
+
+This is the code we used to register the user. here in obj we will store the information of user and by using save() we save the data in database. After registration the user needs to login to the website.
+
+### SHOW MEDICINES
+
+After the pharmacy the pharmacy owner logged into the website, the pharmacy owner will be shown pharmacy query page. At the top of the page the pharmacy user will see an option called medicines. On clicking on medicines the user will see the information of the medicines that the user has which user has entered the website. User will see the name of the medicine, quantity of medicine and price of the medicine which user has entered into the website. If he has no medicines it will no and medicines message.  This way he will know the information he entered into the website and can update it when user has any changes in his medicines.
+
+``` py
+email=request.session['peid']
+queryset=pharmacymedicine.objects.filter(eid=email)
+context={'queryset' : queryset,}
+return render(request,'medicine.html',context)
+```
+
+This is code we use in show_meds() function to show the medicines given by pharmacy. Here by using session we get email while logging in and by using this email we  will filter the data of medicines entered by pharmacy owner and access them to show  in html page. The medicines information of pharmacy is available in this page.
+
+###  USER PROFILE
+
+After logging in the website the user on clicking his profile name user will see your profile option on clicking it the user will be able to see the information he entered into the website. 
+
+Customer profile shows the customer who logged into website will see his/her information.
+
+Pharmacy profile shows the pharmacy who logged into website will see pharmacy information. In pharmacy profile user will also able to see the license file and permission file by clicking on the file.
+
+```py
+def  profile(request):
+	if request.user.is_authenticated:
+		if customer.objects.filter(email=request.user.email):
+			email = request.session['ceid']
+else:
+	peid = request.session['peid']
+	obj=pharmacyowner.objects.get(email=peid)
+data={}
+```
+
+This is code we use in profile() function to show the information given by pharmacy, customer. Here by using session we get email while logging in and by using this email we  can authenticate whether he is a customer or pharmacy owner. After the authentication will filter the data of customer or pharmacy and store it in data{} dictionary ,send it html page and show user profile in html page. 
+
+
+###  SERVICES
+
+Services page is visible on homepage. It can be accessed by anyone whether he is user or not. In services page we will show the services and benefits provided by the website.
+
+###  CONTACT US
+
+Contact us is present on the homepage. If the user has any query he can enter some information details and can write about his query in the contact us page so that we will solve the problem and respond to user about the problem.  Here by using **POST**
+method we are taking data from  contact us page.
+
+```py
+def  contact(request):
+	if request.method =="POST":
+		obj=contactus(name=name,phone=phone,email=email,query=query)
+		obj.save()
+```
+
+This is the code we used for contact us in view. Here in obj we will store the query of user and by using save() we save the data in database. we will then retrieve this query from database and solve the user query.
+
+
+
 
 ## MODULE III
 
