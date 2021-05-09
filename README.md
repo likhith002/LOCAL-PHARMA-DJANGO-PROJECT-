@@ -243,7 +243,7 @@ def logout(request):
 ![LOGIN](/DOCUMENTATION_IMAGES/login.gif)
 
 ### Edit Page
-```
+``` py
 def  profile_update(request):
 
     if request.user.is_authenticated:
