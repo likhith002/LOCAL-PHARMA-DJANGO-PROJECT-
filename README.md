@@ -118,7 +118,11 @@ def reegister_pharmacy(request)
 def register_customer(request)			
 	obj=customer()		
 	obj=save()
+
 ```
+
+
+![REGISTRATION](/DOCUMENTATION_IMAGES/register.gif)
 
 This is the code we used to register the user. here in obj we will store the information of user and by using save() we save the data in database. After registration the user needs to login to the website.
 
@@ -153,6 +157,9 @@ else:
 	obj=pharmacyowner.objects.get(email=peid)
 data={}
 ```
+
+
+![PROFILE](/DOCUMENTATION_IMAGES/profile.gif)
 
 This is code we use in profile() function to show the information given by pharmacy, customer. Here by using session we get email while logging in and by using this email we  can authenticate whether he is a customer or pharmacy owner. After the authentication will filter the data of customer or pharmacy and store it in data{} dictionary ,send it html page and show user profile in html page. 
 
@@ -222,6 +229,9 @@ def logout(request):
 ->Once he gets logged out he will see now login and register buttons not search and 
     " Hello Customer"/"Hello Pharmacy Owner"
 
+
+
+![LOGIN](/DOCUMENTATION_IMAGES/login.gif)
 
 ### Edit Page
 ```
@@ -302,6 +312,10 @@ return  render(request,'customer_query.html')
 And the user searches for one of them, he can see some basic details about the medicine, and he also can see the nearby pharmacies and their details, which sell this particular medicine.
 If he wishes to see more details about the medicine he can click on the more details option.  Here we show detailed information about the medicine, such as `manufacturer name`, `salt composition`, `alternate brands`/`generic alternatives`, `storage conditions`, `side effects`, `benefits`, `uses` etc. 
 
+
+
+![CUSTOMER_QUERY](/DOCUMENTATION_IMAGES/customer_query.gif)
+
 - #### PHARMACY QUERY
 	In this page we have three options
 
@@ -336,3 +350,13 @@ Here we make sure that there isnt a listing from the same pharmacy for the same 
 	The `delete` view implements the feature for deleting listing from a pharmacy user.
 
 To make the process of tracking their listings, we also have `/show_meds` page this lists all the medicines from the currently logged in pharmacy user. The `show_meds` view is responsible for implementing it.
+
+
+![PHARMACY_QUERY](/DOCUMENTATION_IMAGES/pharmacy_query.gif)
+
+
+## FLOW GRAPH
+
+Basic graph of how our website works
+
+![FLOWGRAPH](/DOCUMENTATION_IMAGES/flow_graph.jpeg)
