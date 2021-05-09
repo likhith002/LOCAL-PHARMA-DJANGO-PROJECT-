@@ -81,7 +81,7 @@ This will run your web application on your localserver  127.0.0.1
 
 homepage gives the basic layout of our application containg logo  images of some medicines 
 
-## MODULE 3
+## MODULE III
 
 In this module we are implementing ***AUTHENTICATION ,LOGIN,EDIT,LOGOUT and CHANGE PASSWORD***.
 
@@ -184,8 +184,8 @@ When he gives valid credentials he goes to Customer/Pharmacy Query pages or
 an error message is shown.
 
 
-
-## CUSTOMER AND PHARMACY QUERY
+## MODULE IV
+### CUSTOMER AND PHARMACY QUERY
 Once a user is authenticated, he will have the option to either search for medicines if he is registered as a `customer`, or the option to list/update/delete medicines, otherwise.
 When an authenticated user visits out homepage, we determine the type of user and show the appropriate option. The `check_query` view is responsible for checking the type of user.  
 
