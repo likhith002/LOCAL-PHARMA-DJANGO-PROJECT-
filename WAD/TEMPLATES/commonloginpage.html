@@ -1,0 +1,120 @@
+{% load static %}
+
+<!doctype html>
+<html>
+    <head>
+        <title>
+            LOGIN
+        </title>
+
+
+        <link rel="stylesheet" href="{% static 'CSS/commoncss.css'  %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'CSS/commonloginpage.css'  %}" type="text/css">
+        <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+        <style>
+
+.nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+
+
+        </style>
+    </head>
+
+
+    <body>
+        
+        <header>
+            <span style="margin-left: 50px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="150"></a>
+                </span>
+
+             <div class="nav_bar">
+
+                    <ul >
+                <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+                <li><a href="contact.html"> Contact US</a> </li>
+                        <li><a href="services.html">Services</a></li>
+                </ul>
+
+                </div>
+
+        </header>
+
+        <div>
+            <img  class="pharmacy_image" src="{% static 'IMAGES/pharmacy_img.jpg'  %}"  height="500px"alt="">
+        </div>
+
+        <main class="twoboxes">
+
+            
+            <div class="box box1" style="background-image:url({% static 'IMAGES/customer_login_img.jfif' %})">
+                <h2>CUSTOMER LOGIN</h2>
+
+                <button class="button"   onclick="window.location.href='customer_login.html'"> Customer login</button>
+
+
+            </div>
+
+            <div class="box box2" style="background-image:url({% static 'IMAGES/pharmacy_login_img.jpg' %})">
+                <h2> PHARMACY OWNER LOGIN </h2>
+                <button class="button" onclick="window.location.href='pharmacy_login.html'"> Pharmacy  login</button>
+
+
+            </div>
+
+        </main>
+
+        <footer style="margin-top:30%;height:10%">
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+                <br>
+                <li><a href="services.html"> Services </a></li><br>
+                <li><a href="contact.html">Contact Us</a></li><br>
+               
+                <li><a href="#"> Register</a></li><br>
+            </ul>
+            
+            <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png'  %}" width="150" height="150"></a>
+          <div class="social_media" style="margin-left:700px">
+                <a href="#"> 
+                
+                <img src="{% static 'IMAGES/facebook_logo.png'  %}" alt="" width="50" height="50" >
+                </a><br>
+    
+                <a href="#">
+                <img src="{% static 'IMAGES/twitter_logo.png'  %}" alt="" width="50" height="50"> 
+                </a><br>
+                <a href="#">
+                <img src="{% static 'IMAGES/instagram_logo.jfif'  %}" alt="" width="50" height="50"> 
+                </a>
+            </div>
+
+                   <div style="color:white">  <p >This website is designed and developed by @localpharma</p>
+                     <p>Copyrigths@2020localpharma</p>
+        </div>
+
+        </footer>
+    
+    </body>
+</html>

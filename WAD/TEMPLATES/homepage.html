@@ -1,0 +1,376 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME|LOCAL PHARMA</title>
+    <link rel="stylesheet" href="{%static 'CSS/homepage.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"  integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Navigation-->
+    <section class="navbar " >
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="{% static 'IMAGES/logo.jpg' %}" alt=""></a>
+
+              </button>
+
+                     {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                    <a class="nav-link " style="color:black" href="check_query">SEARCH</a>
+                  </li>
+                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav " style="margin-left: 100px">
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    HELLO "{{user.username}}"
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                        <li><a class="dropdown-item" href="profile">  YOUR PROFILE</a></li>
+                        <li><a  class="dropdown-item"href="check_update.html">EDIT PROFILE</a></li>
+                        <li><a class="dropdown-item" href="check_change_password">CHANGE PASSWORD</a></li>
+                        <li><a class="dropdown-item" href="logout">LOG OUT</a></li>
+
+                      </ul>
+                    </li>
+
+
+                {% else %}
+
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav " style="margin-left: 100px">
+
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i> LOGIN
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                        <li><a class="dropdown-item" href="pharmacy_login.html">PHARMACY LOGIN</a></li>
+                        <li><a class="dropdown-item" href="customer_login.html">CUSTOMER LOGIN</a></li>
+
+                      </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-user-plus" aria-hidden="true"></i>REGISTER
+                      </a>
+
+
+
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                      <li><a class="dropdown-item" href="reegister_pharmacy.html">PHARMACY REGISTER</a></li>
+                      <li><a class="dropdown-item" href="register_customer.html">CUSTOMER REGISTER</a></li>
+
+                    </ul>
+
+
+                  </li>
+
+                    {% endif %}
+                  <li class="nav-item">
+                    <a class="nav-link active" href="services.html">SERVICES</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="contact.html">CONTACT US</a>
+                  </li>
+
+
+
+                </ul>
+
+              </div>
+            </div>
+          </nav>
+    </section>
+
+    <section id="slider">
+        <div id="header-slider" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="header-slider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#header-slider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#header-slider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{% static 'IMAGES/tablet_img1.jpeg' %}" class="d-block img-fluid" alt="...">
+
+                <div class="carousel-caption">
+                    <h5>WELCOME TO LOCAL PHARMA</h5>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'IMAGES/tablet_img.jpeg'%}" class="d-block img-fluid" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{% static 'IMAGES/tablet_img3.jpeg' %}" class="d-block img-fluid" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-slider"  data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-slider"  data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+    </section>
+
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>About us</h2>
+            <div class="about content">
+              Our website is made to help people get quick access through local stores.
+            We made this website so that people can get the information of medicine and in time of emergencies people can get quick access to medicines.
+            We mainly focused on helping people in times of emergencies and information of medicines. We focus for a better future.
+
+            </div>
+            <button class="btn btn-primary" onclick="location.href='services.html';"> Read More >></button>
+          </div>
+          <div class="col-md-6 medicine-bar">
+              <p>Top 4 used Medicines</p>
+            <p>Lipitor</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:90%">90%</div>
+            </div>
+            <p>Nexium</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:70%">70%</div>
+            </div>
+            <p>Plavix</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:60%">60%</div>
+            </div>
+            <p>Advair Diskus</p>
+            <div class="progress">
+              <div class="progress-bar" style="width:50%">50%</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="services" style="background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),url({% static 'IMAGES/logo.jpg' %});">
+      <div class="container">
+        <h1>Our Services</h1>
+
+        <div class="row services">
+          <div class="col-md-4 text-center">
+            <div class="icon">
+              <i class="fa fa-medkit" ></i>
+
+            </div>
+            <h3>Medicine details</h3>
+            <p>
+              We provide basic details of medicine
+            </p>
+
+          </div>
+
+          <div class="col-md-4 text-center">
+            <div class="icon">
+              <i class="fa fa-info" aria-hidden="true"></i>
+
+            </div>
+            <h3>USAGE</h3>
+            <p>
+             we give alternate brands and other suggestions
+            </p>
+
+          </div>
+
+          <div class="col-md-4 text-center">
+            <div class="icon">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+
+            </div>
+            <h3>Pharmacy details</h3>
+            <p>
+              We helps the customers to find the medicines in nearby stores.
+
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <br><br><br><br>
+
+    <section>
+
+         <div class="container">
+        <div class="card-group">
+
+
+            <div class="row">
+
+<!--<div><h3 style="margin:40px;background-color:#4CAF50; text-transform: uppercase ;font-size:30px;text-align:center;text-shadow: 2px 2px 4px #000000">Disinfectents</h3></div>
+                <div class="card col-md-2">
+                    <img class="card-img-top medimg" src= "https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1606138211/bx7e1lqcgiepmbmftyc6.jpg" >
+
+                    <div class="card-body">
+                        <h3 class="card-title">Lizol</h3>
+                        <p class="card-text">Lizol Disinfectant Surface Cleaner Lavender</p>
+
+                    </div>
+                </div>
+
+                <div class="card col-md-2">
+                    <img class="card-img-top medimg" src="{% static 'IMAGES/dettol-antiseptic-disinfectant-liquid.jpg'%}">
+
+                    <div class="card-body">
+                        <h3 class="card-title ">Dettol</h3>
+                        <p class="card-text"> Antiseptic Disinfectant Liquid</p>
+
+                    </div>
+                </div>
+
+                <div class="card col-md-2">
+                    <img class="card-img-top medimg" src="{% static 'IMAGES/lizol-disinfectant-surface-cleaner-citrus.jpg' %}">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Lizol</h3>
+                        <p class="card-text"> Disinfectant Surface Cleaner Citrus</p>
+
+                    </div>
+                </div>
+
+                  <div class="card col-md-2">
+                    <img class="card-img-top medimg" src="https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1601240744/cropped/dvyahhyq8dyrqevqkvy7.png">
+                    <div class="card-body">
+                        <h3 class="card-title">Bacto-V</h3>
+                        <p class="card-text"> Multi Surface Disinfectant Spray</p>
+
+                    </div>
+                </div>-->
+
+                <div ><h3 style="margin:40px;background-color:#4CAF50; text-transform: uppercase ;font-size:30px;text-align:center;text-shadow: 2px 2px 4px #000000">Workout suppliments</h3></div>
+                  <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1600214270/cropped/knpi7bseg4px54e3bs4k.jpg">
+
+                    <div class="card-body">
+                        <h3 class="card-title"> GNC </h3>
+                        <p class="card-text">Triple Strength Fish Oil Softgel</p>
+                    </div>
+                </div>
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/images/w_150,h_150,c_fit,q_auto,f_auto/v1601025304/cropped/ffiqhzvgfr2t37poqsjk/dr.-vaidya-s-herbobuild-capsule.jpg">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Dr. Vaidya's </h3>
+                        <p class="card-text"> Herbobuild Capsule</p>
+                    </div>
+                </div>
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1600195939/cropped/zqjd5par6loelerdmjt9.png">
+                     <div class="card-body">
+                        <h3 class="card-title">HealthKart Basics Omega 3  </h3>
+                        <p class="card-text">  Soft Gelatin Capsule</p>
+
+                    </div>
+                </div>
+
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1600089882/cropped/les8crxutxhhbmbyuwel.png">
+
+                    <div class="card-body">
+                        <h3 class="card-title">Aminofit </h3>
+                        <p class="card-text"> Amino Acid Supplement Soflets</p>
+
+                    </div>
+                </div>
+
+
+                 <div ><h3 style="margin:40px;background-color:#4CAF50; text-transform: uppercase ;font-size:30px;text-align:center;text-shadow: 2px 2px 4px #000000">Electrical Devices</h3></div>
+                  <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/images/w_150,h_150,c_fit,q_auto,f_auto/v1600692575/wdgapqb0xuvgtz0v3auo/omron-hem8712-bp-monitor.jpg">
+                    <div class="card-body">
+                        <h3 class="card-title"> BP Monitor </h3>
+                        <p class="card-text">Omron HEM8712</p>
+                    </div>
+                </div>
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/images/w_150,h_150,c_fit,q_auto,f_auto/v1604648121/l6uogdwamdingxpcc9px/v-cure-well-fingertip-pulse-oximeter.jpg">
+                    <div class="card-body">
+                        <h3 class="card-title">OXIMETERS</h3>
+                        <p class="card-text"> AccuSure FS20C Finger Pulse</p>
+                    </div>
+                </div>
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/images/w_150,h_150,c_fit,q_auto,f_auto/v1600602614/cropped/cqbbke3n5nkony08lf5e/dr-morepen-cn-10-compressor-nebuliser-blue.png">
+                     <div class="card-body">
+                        <h3 class="card-title">Vaporizer  </h3>
+                        <p class="card-text">  CN 10 Compressor Nebuliser Blue</p>
+
+                    </div>
+                </div>
+
+                 <div class="card col-md-2" >
+                    <img class="card-img-top medimg"  src="https://res.cloudinary.com/du8msdgbj/image/upload/l_watermark_346,w_690,h_700/a_ignore,w_690,h_700,c_pad,q_auto,f_auto/v1600593961/cropped/pnrwhnjvc98hipyhjkoq.jpg">
+                    <div class="card-body">
+                        <h3 class="card-title">  Thermometer </h3>
+                        <p class="card-text">  Waterproof Flexible Tip Digital Thermometer White</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <footer style="margin-top:25%;height:3%">
+      <ul style="margin-top:-5%">
+          <li><a href="homepage.html"> Home</a></li><br>
+          <li><a href="services.html"> Services </a></li><br>
+          <li><a href="contact.html">Contact Us</a></li><br>
+          <li><a href="commonloginpage.html"> Log In</a></li><br>
+
+
+      </ul>
+
+      <div class="footer_logo" style="margin-left: 0%; text-transform: uppercase; float:center ;margin-top:20px;text-align:center"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg' %}" width="150" height="150"></a>
+
+
+      </div>
+
+    <div class="social_media" style="margin-left:1250px;margin-top:-10%">
+          <a href="#">
+
+          <img src="{% static 'IMAGES/facebook_logo.png' %}" alt="" width="50" height="50" >
+          </a><br><br>
+
+          <a href="#">
+          <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50">
+          </a><br><br>
+          <a href="#">
+          <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50">
+          </a>
+      </div>
+
+        <br><br><br><br><br>
+        <div style="margin-left:450px;color:white">  <p >This website is designed and developed by @localpharma</p>
+                     <p>Copyrigths@2020localpharma</p>
+        </div>
+  </footer>
+
+
+
+</body>
+</html>

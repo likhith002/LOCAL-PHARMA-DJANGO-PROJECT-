@@ -1,0 +1,48 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    color:black
+    font-family:Catamaran
+}
+h2
+{
+    margin-top: 10%;
+    text-align:center;
+}
+
+
+.profile-list li 
+{
+    padding:40px;
+    
+}
+
+.profile-list li img
+{
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+}
+
+.profile-list li a:hover
+{
+    background-color:#0275d8;
+    padding:15px;
+}
+
+.forms
+{
+    margin-top:50px;
+    margin-left:20% ;
+    float:center;
+}
+
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

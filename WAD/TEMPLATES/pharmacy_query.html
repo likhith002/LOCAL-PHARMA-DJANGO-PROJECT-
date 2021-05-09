@@ -1,0 +1,245 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            PHARMACY QUERY
+        </title>
+         <link href="https://fonts.googleapis.com/css2?family=Catamaran&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'CSS/commoncss.css' %}" type="text/css">
+         <link rel="stylesheet" href="{% static 'CSS/register_customer.css'  %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'CSS/pharmacy_query.css'  %}" type="text/css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <style>
+            .jumbotron {
+              background-color: powderblue;
+              color: #fff;
+            }
+            .nav_bar
+{
+    font-weight:0px;
+    font-size:16px;
+     font-family: Catamaran;
+    float:right;
+    display: block;
+    padding: .5rem 1rem;
+
+
+}
+.nav_bar ul li a{
+text-decoration:none
+
+
+}
+.nav_bar ul li
+{
+    float:left;
+    list-style:none;
+    margin:10px;
+
+}
+
+        </style>
+  </head>
+
+  <header>
+    <span style="margin-left: 0px ; margin-top:-10px;" class="header_nav"><a href="homepage.html"><img src="{% static 'IMAGES/logo.jpg'  %}" width="200" height="119"></a>
+        </span>
+        <div class="nav_bar">
+
+          <ul >
+      <li style="color:black"><i class="fa fa-home" aria-hidden="true"></i><a href="homepage.html">HOME</a></li>
+      <li><a href="contact.html"> Contact US</a> </li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="show_meds">MEDICINE</a></li>
+      </ul>
+
+      </div>
+</header>
+
+    <body >
+        <div style="margin-top:-100px">
+            <div class="jumbotron text-center">
+                <h1>PHARMACY QUERY</h1>
+                <p style="color:#fff;">Give Your Medicine Info Here</p>
+            </div>
+
+            <ul class=profile-list  style="margin-top:2%" >
+                <li style="font-size:30px;font-weight: bold;text-transform:uppercase" >WELCOME <i>{{Name}}</i></li>
+            </ul>
+        <div>
+        </div>
+    <div style="margin-left:-200px">
+    <div style="margin-top:0px">
+
+         <div style="margin:20px;position:center" >
+                    {% for message in messages %}
+                     {% if 'add_success' in message.extra_tags %}
+                    <h4 style="font-size:20px;margin-left:450px;color:green" >{{message}} </h4>
+                    {% endif%}
+                    {% endfor%}
+
+            </div>
+
+
+                <div style="margin:20px;position:center" >
+                        {% for message in messages %}
+                         {% if 'add_error' in message.extra_tags %}
+                        <h4 style="font-size:20px;margin-left:450px;color:red" >{{message}} </h4>
+                        {% endif%}
+                        {% endfor%}
+
+                </div>
+
+    <form action="/add" method="post" class="forms">
+           {% csrf_token %}
+        <div class="ui-widget" style="font-family:Catamaran">
+            <input   style="" class="pd" type="text" placeholder="Name" name="mid"  id="name">
+             <input  class="pd" type="text " placeholder="Quantity"  name="quantity">
+    <input class="pd" type="text " placeholder="price(Rs)" name="price" >
+    <input  type="submit"  value="ADD" >
+
+        </div>
+
+
+    </form>
+
+    <div style="margin:20px;position:center" >
+                    {% for message in messages %}
+                     {% if 'update_error' in message.extra_tags %}
+                    <h4 style="font-size:20px;margin-left:450px;color:red" >{{message}} </h4>
+                    {% endif%}
+                    {% endfor%}
+
+    </div>
+
+         <div style="margin:20px;position:center" >
+                    {% for message in messages %}
+                     {% if 'update_success' in message.extra_tags %}
+                    <h4 style="font-size:20px;margin-left:450px;color:green" >{{message}} </h4>
+                    {% endif%}
+                    {% endfor%}
+
+    </div>
+
+
+    <form action="/edit" method="post" class="forms">
+           {% csrf_token %}
+
+            <div class="ui-widget" style="font-family:Catamaran">
+            <input    class="pd" type="text" placeholder="Name" name="mid"  id="name1">
+             <input  class="pd" type="text " placeholder="Quantity"  name="quantity">
+             <input class="pd" type="text " placeholder="price(Rs)" name="price" >
+    <input  type="submit"  value="UPDATE" >
+
+        </div>
+
+    </form>
+
+        <div style="margin:20px;position:center" >
+                    {% for message in messages %}
+                     {% if 'delete_error' in message.extra_tags %}
+                    <h4 style="font-size:20px;margin-left:450px;color:red" >{{message}} </h4>
+                    {% endif%}
+                    {% endfor%}
+
+    </div>
+
+         <div style="margin:20px;position:center" >
+                    {% for message in messages %}
+                     {% if 'delete_success' in message.extra_tags %}
+                    <h4 style="font-size:20px;margin-left:450px;color:green" >{{message}} </h4>
+                    {% endif%}
+                    {% endfor%}
+
+    </div>
+
+
+
+    <form action="/delete" method="post" class="forms">
+           {% csrf_token %}
+      <div class="ui-widget" style="font-family:Catamaran">
+            <input    class="pd" type="text" placeholder="Name" name="mid"  id="name2">
+
+        <input style type="submit"  value="DELETE">
+
+      </div>
+
+    </form>
+
+</div>
+
+        </div>
+
+        </div>
+
+
+
+        <footer style="margin-top:150px;height:20%">
+            <ul>
+                <li><a href="homepage.html"> Home </a></li><br>
+                <li><a href="services.html"> Services </a></li><br>
+                <li><a href="contact.html">Contact Us</a></li><br>
+
+                <li><a href="commonloginpage.html"> Log In</a></li><br>
+            </ul>
+            <div class="footer_logo" style="margin-left: 600px; text-transform: uppercase; float:center ;margin-top:20px"><a href="homepage.html"><img src="{% static 'IMAGES/logo.png' %} " width="150" height="150"></a>
+
+
+            </div>
+          <div class="social_media">
+                <a href="#">
+
+                <img src="{% static 'IMAGES/facebook_logo.png' %}" alt="" width="50" height="50" >
+                </a><br>
+
+                <a href="#">
+                <img src="{% static 'IMAGES/twitter_logo.png' %}" alt="" width="50" height="50">
+                </a><br>
+                <a href="#">
+                <img src="{% static 'IMAGES/instagram_logo.jfif' %}" alt="" width="50" height="50">
+                </a>
+            </div>
+    </footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+        $( function() {
+
+            $( "#name" ).autocomplete({
+      source: '{% url 'autocomplete' %}',
+      minLength:2
+    });
+  } );
+
+
+   $( function() {
+
+            $( "#name1" ).autocomplete({
+      source: '{% url 'autocomplete' %}',
+      minLength:2
+    });
+  } );
+
+ $( function() {
+
+            $( "#name2" ).autocomplete({
+      source: '{% url 'autocomplete' %}',
+      minLength:2
+    });
+  } );
+
+
+
+  </script>
+
+</body>
+
+</html>
