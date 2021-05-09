@@ -1,4 +1,4 @@
-# WAD PROJECT  GROUP-17
+# WAD PROJECT  DOCUMENTATION GROUP-17
 
 ## TITLE    
  **Designing a website that gives information about medicines available in the local** **pharmacy shops**
@@ -46,13 +46,13 @@ For example
 ``` py
 DATABASES = {  
     'default': {  
-       ` 'ENGINE': 'django.db.backends.mysql',`  
+        'ENGINE': 'django.db.backends.mysql', 
   'NAME': 'localpharma',  
   'USER':'root',
   'PASSWORD': 'yourpassword', 
   'HOST':'127.0.0.1',
-  'PORT':3306`, 
-  `  
+  'PORT':'3306', 
+    
 }
 ```
 
@@ -64,8 +64,8 @@ This command will collect all the static files like CSS,JS,IMAGES and place it i
 
 - Now you have to migrate your models to Database by using two commands
 ```  py
-> python manage.py makemigrations`
-> `python manage.py migrate`
+> python manage.py makemigrations
+> python manage.py migrate
 ```
 
 The first command will create a **migrations**  folder in your  project directory with **001_initial.py**  with all the fields in models
@@ -80,6 +80,7 @@ This will run your web application on your localserver  127.0.0.1
 ### HOMEPAGE
 
 homepage gives the basic layout of our application containg logo  images of some medicines 
+
 
 ## MODULE III
 
