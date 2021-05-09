@@ -122,7 +122,11 @@ def register_customer(request)
 ```
 
 
+
+
 ![REGISTRATION](/DOCUMENTATION_IMAGES/register.gif)
+
+
 
 This is the code we used to register the user. here in obj we will store the information of user and by using save() we save the data in database. After registration the user needs to login to the website.
 
@@ -159,7 +163,12 @@ data={}
 ```
 
 
+
+
 ![PROFILE](/DOCUMENTATION_IMAGES/profile.gif)
+
+
+
 
 This is code we use in profile() function to show the information given by pharmacy, customer. Here by using session we get email while logging in and by using this email we  can authenticate whether he is a customer or pharmacy owner. After the authentication will filter the data of customer or pharmacy and store it in data{} dictionary ,send it html page and show user profile in html page. 
 
