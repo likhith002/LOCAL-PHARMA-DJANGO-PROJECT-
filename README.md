@@ -224,12 +224,13 @@ When customer clicks on "Search" he will go to "Customer Query Page".
 When a pharmacy owner gets logged in he goes to pharmacy query page and then if he clicks on home button then he goes to home page.
 Now In this home page the customer can see "Hello Pharmacy Owner" and if he clicks on that he will see a dropdown which has four options i.e Your File, Edit Profile, Change Password and Logout.   
 When he clicks on "Search" he will go to "Customer Query Page".
+
 ```py
 def logout(request):
 
      logout(request)
      # Redirect to a Homepage page.
- ```
+```
 ->The above is pseudo code of logout view.
 ->It takes an `HttpRequest` object and has no return value.
 ->When an user gets logged out he gets redirected to homepage.
@@ -258,7 +259,7 @@ def  profile_update(request):
 		 #If the email given is not present we give an error message and
 		 render to edit profile page.
 	     #This is for pharmacy owner
- ```    
+```    
     
 The above is pseudo code for profile update view. Our application allows the user to  **Edit** his given information. We use post method here to allow the user to put his new information. Email can't be changed once registered. As we use email as a primary key.
 
@@ -282,7 +283,7 @@ def change_password(request):
 
     else:
      return render(request,'changepassword.html')
-   ```
+```
   User is allowed to ***change his password***. User is asked new password two times for conformation if they are same then new password is saved. Else it returns an error message.
 
 
