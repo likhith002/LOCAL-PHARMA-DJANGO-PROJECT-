@@ -209,10 +209,8 @@ def customer_login(request):
      if user is not None:
         auth.login(request, user)
         # Render to a Customer query page.
-        ...
      else:
         # Return an 'invalid credentials' error message and render to customer login page.
-        ...
    ```
 
 The above pseudo code for customer login view.
@@ -230,7 +228,7 @@ When he clicks on "Search" he will go to "Customer Query Page".
 def logout(request):
 
      logout(request)
-     # Redirect to a Homepage page.`
+     # Redirect to a Homepage page.
  ```
 ->The above is pseudo code of logout view.
 ->It takes an `HttpRequest` object and has no return value.
@@ -247,7 +245,7 @@ def logout(request):
 def  profile_update(request):
 
     if request.user.is_authenticated:
-     if customer.objects.filter(email=request.user.email):` 
+     if customer.objects.filter(email=request.user.email):
       email = request.session['ceid'] # accessing using session
       if request.method == "POST":
        we take the information and then update it.
@@ -293,9 +291,9 @@ def change_password(request):
 
 ### Common Login Page
 
-Here in one page we have two login options.
-->Customer Login
-->Pharmacy Login
+Here in one page we have two login options.<br>
+->Customer Login<br>
+->Pharmacy Login<br>
 When he gives valid credentials he goes to Customer/Pharmacy Query pages or 
 an error message is shown.
 
