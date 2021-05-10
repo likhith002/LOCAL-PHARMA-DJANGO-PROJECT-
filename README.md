@@ -211,7 +211,7 @@ def customer_login(request):
         # Render to a Customer query page.
      else:
         # Return an 'invalid credentials' error message and render to customer login page.
-   ```
+```
 
 The above pseudo code for customer login view.
 
