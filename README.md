@@ -266,7 +266,7 @@ The above is pseudo code for profile update view. Our application allows the use
 
 ### Change Password
 ```py
-`def change_password(request):`
+def change_password(request):
 
     if request.method=="POST":
      password1=request.POST['password1']
