@@ -1,5 +1,3 @@
-# WAD PROJECT  DOCUMENTATION GROUP-17
-
 ## TITLE    
  **Designing a website that gives information about medicines available in the local** **pharmacy shops**
 
@@ -369,10 +367,3 @@ Basic graph of how our website works
 
 ![FLOWGRAPH](/DOCUMENTATION_IMAGES/flow_graph.jpeg)
 
-
-## TEAM MEMBERS
-### S20190010008  ANNEPU LIKHITH BHARADWAJ
-### S20190010001  A PRANAY
-### S20190010005  ALLATIPALLI NAGA SAI LOKESH REDDY
-### S20190010011  ARYAN NIKHIL PHULKAR
-### S20190010070  JATOTH BHARATH CHANDRA
